@@ -12,7 +12,7 @@ function init($request = array(), $urlconf = array()) {
   $response = array();
 
   // Шаблон страницы по умолчанию.
-  $template = 'page';
+  $template = 'form';
 
   // Массив текущего вывода модулей.
   $c = array();

@@ -1,8 +1,17 @@
 <?php
 
 global $db;
+$user = 'u68607';
+$pass = '7232008';
+$db = new PDO('mysql:host=localhost;dbname=u68607', $user, $pass,
+    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+
+/*
+global $db;
 $db = new PDO('mysql:host=' . conf('db_host') . ';dbname=' . conf('db_name'), conf('db_user'), conf('db_psw'),
   array(PDO::MYSQL_ATTR_FOUND_ROWS => true, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+*/
+
 
 function db_row($stmt) {
   return $stmt->fetch(PDO::FETCH_ASSOC);
