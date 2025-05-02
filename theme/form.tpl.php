@@ -18,7 +18,7 @@
     
     <!-- Наши js и css файлы -->
 
-    <link rel="stylesheet"  href="../styles/style.css">
+    <link rel="stylesheet"  href="./styles/style.css">
     <link rel="stylesheet"  href="../styles/slick.css"> 
     <link rel="stylesheet"  href="../styles/header-style.css"> 
     <!-- <link rel="stylesheet"  href="style/slick-theme.css"> -->
