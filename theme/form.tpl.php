@@ -882,7 +882,7 @@
           <br>
           <div class="b-footer-info p-0">
             <span> <img src="./styles/img/phone.svg" alt="phone-sign" height="25" width="25"> 8 800 222-26-73 </span><br>
-            <a href="index.html"> <img src="style/img/mail.svg" alt="mail-sign" height="25" width="25">info@drupal-coder.ru </a>
+            <a href="index.html"> <img src="./styles/img/mail.svg" alt="mail-sign" height="25" width="25">info@drupal-coder.ru </a>
           </div>
       </div>
 
@@ -1021,10 +1021,10 @@
     <div class="ftr col-12 order-3 order-md-3">
       <div class="footer-body p-0">
         <ul class="sns-wrapper row d-flex px-3">
-          <li class="sns"><a title="Facebook" href="index.html"><img alt="logo-fb" src="style/img/logo-facebook.png"></a></li>
-          <li class="sns"><a title="Вконтакте" href="index.html"><img alt="logo-vk" src="style/img/logo-vk.png"></a></li>
-          <li class="sns"><a title="Telegram" href="index.html"><img alt="logo-tg" src="style/img/logo-telegram.png"></a></li>
-          <li class="sns"><a title="YouTube" href="index.html"><img alt="logo-yt" src="style/img/logo-youtube.png"></a></li>
+          <li class="sns"><a title="Facebook" href="index.html"><img alt="logo-fb" src="./styles/img/logo-facebook.png"></a></li>
+          <li class="sns"><a title="Вконтакте" href="index.html"><img alt="logo-vk" src="./styles/img/logo-vk.png"></a></li>
+          <li class="sns"><a title="Telegram" href="index.html"><img alt="logo-tg" src="./styles/img/logo-telegram.png"></a></li>
+          <li class="sns"><a title="YouTube" href="index.html"><img alt="logo-yt" src="./styles/img/logo-youtube.png"></a></li>
         </ul>
         ООО «Инитлаб», Краснодар, Россия. <br>
         Drupal является зарегистрированной торговой маркой Dries Buytaert.
