@@ -12,7 +12,7 @@ function init($request = array(), $urlconf = array()) {
   $response = array();
 
   // Шаблон страницы по умолчанию.
-  $template = 'form';
+  $template = 'page';
 
   // Массив текущего вывода модулей.
   $c = array();
@@ -100,6 +100,8 @@ function init($request = array(), $urlconf = array()) {
 
   return $response;
 }
+
+
 
 // Возвращает параметр конфигурации из settings.php.
 function conf($key) {
