@@ -147,7 +147,7 @@ function front_get($request, $db) {
 }
 
 // Обработчик запросов методом POST.
-function front_post($request) {
+function front_post($request, $db) {
   
   $fio = $_POST['fio'];
   $num = $_POST['number'];
