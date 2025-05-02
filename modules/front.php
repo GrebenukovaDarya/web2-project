@@ -15,7 +15,17 @@ function front_get($request, $db) {
   // Пример возврата ресурс не найден.
   return not_found();*/
 
-  $data;
+  $messages = array();
+  $errors = array();
+  $values = array();
+  $allowed_lang=getLangs();
+
+  $data = [
+    'messages' => $messages,
+    'errors' => $errors,
+    'allowed_lang' => $allowed_lang,
+    'values' => $values,
+  ];
 
   return theme('form', $data);
 }

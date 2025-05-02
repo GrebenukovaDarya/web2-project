@@ -15,6 +15,22 @@ $db = new PDO('mysql:host=' . conf('db_host') . ';dbname=' . conf('db_name'), co
 */
 
 
+function getLangs(){
+  global $db;
+  try{
+    $allowed_lang=[];
+    $data = $db->query("SELECT lang_name FROM prog_lang")->fetchAll();
+    foreach ($data as $lang) {
+      $lang_name = $lang['lang_name'];
+      $allowed_lang[$lang_name] = $lang_name;
+    }
+    return $allowed_lang;
+  } catch(PDOException $e){
+    print('Error: ' . $e->getMessage());
+    exit();
+  }
+}
+
 function db_row($stmt) {
   return $stmt->fetch(PDO::FETCH_ASSOC);
 }
