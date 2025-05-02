@@ -469,7 +469,7 @@
           <p class="col-12"> Руководитель отдела DevOPS, директор</p>
         </div>
         <div class="team-block col-6 col-md-4 row d-flex justify-content-around m-0">
-          <img class="col-12 mb-3" alt="c-3" src="./stylesimg/IMG_2474_1.jpg">
+          <img class="col-12 mb-3" alt="c-3" src="./styles/img/IMG_2474_1.jpg">
           <h3 class="col-12"> Алексей Синица </h3> 
           <p class="col-12"> Руководитель отдела поддержки сайтов</p>
         </div>
