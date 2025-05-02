@@ -12,7 +12,7 @@ define('INCLUDE_PATH', './scripts' . PATH_SEPARATOR . './modules');
 // Храним настройки в массиве чтоб легче было смотреть (print_r),
 // хранить (serialize), оверрайдить и не плодить глобалов.
 $conf = array(
-  'sitename' => 'Demo Framework',
+  'sitename' => 'PROJECT',
   'theme' => './theme',
   'charset' => 'UTF-8',
   'clean_urls' => TRUE,
@@ -20,7 +20,7 @@ $conf = array(
   'date_format' => 'Y.m.d',
   'date_format_2' => 'Y.m.d H:i',
   'date_format_3' => 'd.m.Y',
-  'basedir' => '/web2-project',
+  'basedir' => '/web2-project/',
   'login' => 'admin',
   'password' => '123',
 );

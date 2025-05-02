@@ -1,5 +1,7 @@
 <?php
 
+require_once './scripts/db.php';
+
 // Обработчик запросов методом GET.
 function front_get($request) {
   // Пример ответа веб-сервиса.
