@@ -978,7 +978,7 @@
             </label> 
           </div>
 
-          <input type="submit" value="Сохранить"/> 
+          <input class="submit-btn" type="submit" value="Сохранить"/> 
           </form>
         </div>
 
