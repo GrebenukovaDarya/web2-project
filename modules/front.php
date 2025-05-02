@@ -15,6 +15,8 @@ function front_get($request, $db) {
   // Пример возврата ресурс не найден.
   return not_found();*/
 
+  $data;
+
   return theme('form', $data);
 }
 
