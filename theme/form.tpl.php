@@ -37,7 +37,7 @@
         <header> 
            <div class="header__video">
               <video class="h-vid"  loop autoplay muted>
-                  <source src="./style/img/video.mp4" type="video/mp4">
+                  <source src="./styles/img/video.mp4" type="video/mp4">
               
               </video>
            </div>
