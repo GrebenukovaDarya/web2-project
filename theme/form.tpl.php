@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
-    <script src="../scripts/slick.min.js" defer></script>
+    <script src="./scripts/slick.min.js" defer></script>
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -23,10 +23,10 @@
     <link rel="stylesheet"  href="./styles/header-style.css"> 
     <!-- <link rel="stylesheet"  href="style/slick-theme.css"> -->
 
-    <script src="../scripts/form.js" defer></script>
-    <script src="../scripts/buttons.js" defer></script>
-    <script src="../scripts/slider.js" defer></script>
-    <script src="../scripts/linkunderline.js" defer></script>
+    <script src="./scripts/form.js" defer></script>
+    <script src="./scripts/buttons.js" defer></script>
+    <script src="./scripts/slider.js" defer></script>
+    <script src="./scripts/linkunderline.js" defer></script>
     <title>Project</title>
 </head>
 
@@ -881,7 +881,7 @@
 
           <br>
           <div class="b-footer-info p-0">
-            <span> <img src="style/img/phone.svg" alt="phone-sign" height="25" width="25"> 8 800 222-26-73 </span><br>
+            <span> <img src="./styles/img/phone.svg" alt="phone-sign" height="25" width="25"> 8 800 222-26-73 </span><br>
             <a href="index.html"> <img src="style/img/mail.svg" alt="mail-sign" height="25" width="25">info@drupal-coder.ru </a>
           </div>
       </div>
