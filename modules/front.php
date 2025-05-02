@@ -17,10 +17,13 @@ function front_get($request, $db) {
     $messages[] = 'Спасибо, результаты сохранены.';
 
     if (!empty($_COOKIE['password'])) {
-        $messages[] = sprintf('Вы можете <a href="login.php">войти</a> с логином <strong>%s</strong>
+        $messages[] = sprintf('Вы можете <a href="%s">войти</a> с логином <strong>%s</strong>
           и паролем <strong>%s</strong> для изменения данных.',
-          strip_tags($_COOKIE['login']),
-          strip_tags($_COOKIE['password']));
+          htmlspecialchars(url('login'), ENT_QUOTES, 'UTF-8'),
+          htmlspecialchars($_COOKIE['login'], ENT_QUOTES, 'UTF-8'),
+          htmlspecialchars($_COOKIE['password'], ENT_QUOTES, 'UTF-8'));
+          /*strip_tags($_COOKIE['login']),
+          strip_tags($_COOKIE['password']));*/
       }
   }
 
@@ -312,3 +315,9 @@ function front_post($request, $db) {
   setcookie('save', '1');
   return redirect();
 }
+
+
+/*
+8519229a208c9f0a
+OTbz3RfnvhjY
+*/
