@@ -653,6 +653,9 @@ body{
     color: #f14d34;
 }
   /*---footer---*/
+  .formstyle{
+    color:#d7d7d7;
+  }
 footer {
     font-family:'Montserrat';
     background: 
