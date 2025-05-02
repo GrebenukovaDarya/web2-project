@@ -10,14 +10,14 @@ ini_set('display_errors', DISPLAY_ERRORS);
 ini_set('include_path', INCLUDE_PATH);
 
 include('./scripts/init.php');
-
+include('./scripts/db.php');
 $request = array(
   'url' => isset($_GET['q']) ? $_GET['q'] : '',
   'method' => isset($_POST['method']) && in_array($_POST['method'], array('get', 'post', 'put', 'delete')) ? $_POST['method'] : $_SERVER['REQUEST_METHOD'],
   'get' => !empty($_GET) ? $_GET : array(),
   'post' => !empty($_POST) ? $_POST : array(),
   'put' => !empty($_POST) && !empty($_POST['method']) && $_POST['method'] == 'put' ? $_POST : array(),
-  'delete' => !empty($_POST) && !empty($_POST['method']) && $_POST['method'] == 'put' ? $_POST : array(),
+  'delete' => !empty($_POST) && !empty($_POST['method']) && $_POST['method'] == 'delete' ? $_POST : array(),
   'Content-Type' => 'text/html',
 );
 
