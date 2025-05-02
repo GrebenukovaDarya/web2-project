@@ -5,10 +5,13 @@
  * (с) Сергей Синица 2007-2020.
  * (с) "КубГУ", 2013.
  */
+global $db;
 
 // Диспатчер. Делает запрос $request в соответствии со структурой $urlconf.
 function init($request = array(), $urlconf = array()) {
   // Массив HTTP-ответа.
+
+
   $response = array();
 
   // Шаблон страницы по умолчанию.
@@ -63,7 +66,7 @@ function init($request = array(), $urlconf = array()) {
     }
 
     // Собираем параметры в массив.
-    $params = array('request' => $request);
+    $params = array('request' => $request, 'db' => $db);
     array_shift($matches);
     foreach ($matches as $key => $match) {
       $params[$key] = $match[0];
@@ -101,8 +104,6 @@ function init($request = array(), $urlconf = array()) {
   return $response;
 }
 
-
-
 // Возвращает параметр конфигурации из settings.php.
 function conf($key) {
   global $conf;
@@ -112,14 +113,17 @@ function conf($key) {
 // Формирует сокращенные URL для ссылок или для текущей страницы.
 function url($addr = '', $params = array()) {
   global $conf;
-  // Если вызвали без параметров, до делаем ссылку на текущую страницу.
+
+  // Если вызвали без параметров, то делаем ссылку на текущую страницу.
   if ($addr == '' && isset($_GET['q'])) {
     $addr = strip_tags($_GET['q']);
   }
-  // В зависимоти от настроек проекта генерируем чистые ссылки или ссылки с параметром.
+
+  // В зависимости от настроек проекта генерируем чистые ссылки или ссылки с параметром.
   $clean = conf('clean_urls');
   $r = $clean ? '/' : '?q=';
-  $r .= strip_tags($addr);
+  $r = conf('basedir') . ltrim($r . strip_tags($addr), '/'); // Добавляем basedir и удаляем лишний слеш
+
   // Добавляем параметры.
   if (count($params) > 0) {
     $r .= $clean ? '?' : '&';
@@ -128,16 +132,20 @@ function url($addr = '', $params = array()) {
   return $r;
 }
 
+
 // Возвращает редирект 302 с заголовком Location.
-function redirect($l = NULL) {
+function redirect($l = NULL, $statusCode = 302) {
   if (is_null($l)) {
-    $location = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    $location = $_SERVER['REQUEST_URI']; // Относительный URL
   }
   else {
-    $location = 'http://' . $_SERVER['HTTP_HOST'] . conf('basedir') . url($l);
+    $location = conf('basedir') . $l; // Относительный URL
   }
-  return array('headers' => array('Location' => $location));
+  //Относительные URL более предпочтительны
+    return array('headers' => array('Location' => $location),
+                 'statusCode' => $statusCode);
 }
+
 
 // Возвращает 403.
 function access_denied() {
@@ -159,7 +167,6 @@ function not_found() {
 function theme($t, $c = array()) {
   // Путь к файлу шаблона.
   $template = conf('theme') . '/' . str_replace('/', '_', $t) . '.tpl.php';
-
   // Если нет файла шаблона, то просто печатаем данные слитно.
   if (!file_exists($template)) {
     return implode('', $c);
@@ -167,6 +174,7 @@ function theme($t, $c = array()) {
 
   // Начинаем буферизацию вывода.
   ob_start();
+  extract($c);
   // Парсим и включаем файл шаблона, весь вывод попадает в буфер.
   include $template;
   // Достаем содержимое буфера.
