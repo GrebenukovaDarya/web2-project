@@ -52,7 +52,7 @@ body{
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url("img/icon-bg.svg") no-repeat left;
+    background: url("styles/img/icon-bg.svg") no-repeat left;
     background-size: 115px 80px;
     background-position: 0% 100%; 
 }
@@ -100,28 +100,28 @@ body{
     font-weight: 600;
 }
 #sq-1{
-    background-image: url(img/support1.svg);
+    background-image: url(styles/img/support1.svg);
 }
 #sq-2{
-    background-image: url(img/support2.svg);
+    background-image: url(styles/img/support2.svg);
 }
 #sq-3{
-    background-image: url(img/support3.svg);
+    background-image: url(styles/img/support3.svg);
 }
 #sq-4{
-    background-image: url(img/support4.svg);
+    background-image: url(styles/img/support4.svg);
 }
 #sq-5{
-    background-image: url(img/support5.svg);
+    background-image: url(styles/img/support5.svg);
 }
 #sq-6{
-    background-image: url(img/support6.svg);
+    background-image: url(styles/img/support6.svg);
 }
 #sq-7{
-    background-image: url(img/support7.svg);
+    background-image: url(styles/img/support7.svg);
 }
 #sq-8{
-    background-image: url(img/support8.svg);
+    background-image: url(styles/img/support8.svg);
 }
 .square-wrapper img{
     display: block;
@@ -153,7 +153,7 @@ body{
     right: 0;
     bottom: 0;
     left: 0;
-    background: url(img/drupal-logo-2.svg) no-repeat right bottom;
+    background: url(styles/img/drupal-logo-2.svg) no-repeat right bottom;
     background-size: contain;
     z-index: 5;
 }
@@ -214,7 +214,7 @@ body{
     right: 0;
     bottom: 0;
     left: 0;
-    background: url(img/tariff-bg.png) no-repeat right;
+    background: url(styles/img/tariff-bg.png) no-repeat right;
     z-index: 1;
     background-size: auto 100%;
 }
@@ -319,7 +319,7 @@ body{
     position: absolute;
     width: 115px;
     height: 70px;
-    background: url("img/icon-bg.svg") no-repeat center;
+    background: url("styles/img/icon-bg.svg") no-repeat center;
     background-size: contain;
     left: 0;
     top: 15px;
@@ -456,7 +456,7 @@ body{
 }
   /*---slider---*/
 .rev-wrapper{
-    background: url(img/right-quote-sign.svg) no-repeat left top;
+    background: url(styles/img/right-quote-sign.svg) no-repeat left top;
     background-size: 25%;
     padding-bottom: 60px;
 }
@@ -509,7 +509,7 @@ body{
     border-bottom: 2px solid #dfdede;
 }
 .b-slider .slick-arrow.slick-prev {
-    background: url('img/arrow-left.svg') no-repeat center;
+    background: url('styles/img/arrow-left.svg') no-repeat center;
     background-size: contain;
     width: 16px;
     height: 50px;
@@ -519,7 +519,7 @@ body{
     outline: none;
 }
 .b-slider .slick-arrow.slick-next {
-    background: url('img/arrow-right.svg') no-repeat center;
+    background: url('styles/img/arrow-right.svg') no-repeat center;
     background-size: contain;
     width: 16px;
     height: 50px;
@@ -659,8 +659,8 @@ footer {
     linear-gradient(270deg,
      rgba(255, 255, 255, .276) -114.85%, 
      rgba(255, 255, 255, 0) 69.04%), 
-     url(img/footer-D-1.svg) no-repeat top center, 
-     url(img/footer-D-2.png) no-repeat bottom right, 
+     url(styles/img/footer-D-1.svg) no-repeat top center, 
+     url(styles/img/footer-D-2.png) no-repeat bottom right, 
      #040613;
     background-repeat: no-repeat;
     padding: 40px 0 75px;
@@ -856,7 +856,7 @@ footer {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: url("img/icon-bg.svg") no-repeat;
+        background: url("styles/img/icon-bg.svg") no-repeat;
         background-size: 115px 80px;
         background-position: 0% 50%; 
         top: 10px;
