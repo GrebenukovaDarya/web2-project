@@ -3,7 +3,9 @@
 require_once './scripts/db.php';
 
 // Обработчик запросов методом GET.
-function front_get($request) {
+function front_get($request, $db) {
+
+  /*
   // Пример ответа веб-сервиса.
   return array('headers' => array('Content-Type' => 'application/xml'), 'entity' => '<document />');
   // Пример возврата контента.
@@ -11,7 +13,9 @@ function front_get($request) {
   // Пример запрета доступа.
   return access_denied();
   // Пример возврата ресурс не найден.
-  return not_found();
+  return not_found();*/
+
+  return theme('form', $data);
 }
 
 // Обработчик запросов методом POST.
