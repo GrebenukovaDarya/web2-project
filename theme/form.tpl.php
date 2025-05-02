@@ -970,13 +970,19 @@
             <textarea class="input-field" name="biography" <?php if ($errors['bio']) {print 'class="error"';} ?>><?php print $values['bio']; ?></textarea>
           </label> <br/>
 
+
+        <!--
           <div class="checkbox-block d-flex">
             <label class="form-checkbox pl-2">
               <input class="custom-checkbox my-2" type="checkbox" name="checkbox"
-              <?php if ($errors['checkbox']) {print 'class="error"';} ?>  <?php if (!$errors['checkbox']) {print 'checked="checked"';} ?>/> 
               С контрактом ознакомлен 
             </label> 
-          </div>
+          </div>-->
+          <label class="form-checkbox pl-2">
+            <input type="checkbox" name="checkbox"
+            <?php if ($errors['checkbox']) {print 'class="error"';} ?>  <?php if (!$errors['checkbox']) {print 'checked="checked"';} ?>/> 
+            С контрактом ознакомлен 
+          </label> <br/>
 
           <input class="submit-btn" type="submit" value="Сохранить"/> 
           </form>
