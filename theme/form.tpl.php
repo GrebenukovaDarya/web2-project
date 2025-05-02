@@ -886,6 +886,104 @@
           </div>
       </div>
 
+
+      <div class="b-form col-12 col-md-6 order-2 order-md-2 px-3 pb-3 pt-1 pt-md-3">
+    
+
+        <div class="error_messages" <?php if (empty($messages)) {print 'display="none"';} else {print 'display="block"';} ?>>
+
+          <?php
+          if (!empty($messages)) {
+            print('<div id="messages">');
+            foreach ($messages as $message) {
+              print($message);
+            }
+            print('</div>');
+          }
+          ?>
+
+        </div>
+
+
+        <div class="formstyle" > 
+          <form id="myform" class="application" action="" method="POST">
+
+            <h2> ФОРМА </h2> 
+
+            <input type="hidden" name="uid" value='<?php print $values['uid'];?>' />
+            
+          <label> 
+            ФИО: <br/>
+            <input name="fio" <?php if ($errors['fio'] ) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" />
+          </label> <br/>
+
+          <label> 
+            Номер телефона: <br />
+            <input name="number" type="tel" 
+            <?php if ($errors['number']) {print 'class="error"';} ?> value="<?php print $values['number']; ?>"/>
+          </label> <br/>
+          <p class="numtext"> *используйте телефонный код +7</p>
+
+          <label>
+            E-mail: <br/>
+            <input name="email" type="email" 
+            <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>"/>
+          </label> <br/>
+
+          <label> 
+            Дата рождения: <br/>
+            <input name="birthdate" type="date" 
+            <?php if ($errors['bdate']) {print 'class="error"';} ?> value="<?php print $values['bdate']; ?>"/>
+          </label> <br/>
+          
+          Пол: <br /> 
+          <label> <input type="radio" name="radio-group-1" value="male" 
+          <?php if ($errors['gen']) {print 'class="error"';} ?>
+          <?php if ($values['gen']=='male') {print 'checked="checked"';} ?>/> Мужской </label>
+          <label> <input type="radio"  name="radio-group-1" value="female" 
+          <?php if ($errors['gen']) {print 'class="error"';} ?>
+          <?php if ($values['gen']=='female') {print 'checked="checked"';} ?>/> Женский</label> <br/>
+
+          <?php 
+          $user_languages = explode(",",  $values['lang']);
+          ?>
+
+          <label > 
+            Любимый язык программирования: <br/>
+            <select  name="languages[]" multiple="multiple" 
+            <?php if ($errors['lang']) {print 'class="error"';} ?> >
+
+            <?php 
+              foreach ($allowed_lang as $lang => $value) {
+                printf('<option value="%s" ', $lang);
+                if(in_array($lang, $user_languages)) {
+                  print 'selected="selected"';
+                }
+                printf('>%s</option>', $value);
+              }
+            ?>
+            
+            </select>
+          </label> <br/>
+
+          <label>
+            Биография: <br/>
+            <textarea name="biography" <?php if ($errors['bio']) {print 'class="error"';} ?>><?php print $values['bio']; ?></textarea>
+          </label> <br/>
+
+          <label class="form-checkbox pl-2">
+            <input type="checkbox" name="checkbox"
+            <?php if ($errors['checkbox']) {print 'class="error"';} ?>  <?php if (!$errors['checkbox']) {print 'checked="checked"';} ?>/> 
+            С контрактом ознакомлен 
+          </label> <br/>
+
+          <input type="submit" value="Сохранить"/> 
+          </form>
+        </div>
+
+      </div>
+
+      <!--
       <div class="b-form col-12 col-md-6 order-2 order-md-2 px-3 pb-3 pt-1 pt-md-3">
         
         <form id="myform" class="formcarryForm" action="https://formcarry.com/s/5HKia9oLyPf" enctype="multipart/form-data">
@@ -916,6 +1014,7 @@
           <input class="submit-btn" type="submit" value="Свяжитесь с нами"> 
         </form>
       </div>
+        -->
 
     </div>
 
