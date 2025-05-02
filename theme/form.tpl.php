@@ -904,7 +904,7 @@
         </div>
 
 
-        <div class="formstyle" > 
+        <div class="formstyle1" > 
           <form id="myform" class="application" action="" method="POST">
 
             <h2> ФОРМА </h2> 
