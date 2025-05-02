@@ -148,6 +148,8 @@ function front_get($request, $db) {
 
 // Обработчик запросов методом POST.
 function front_post($request, $db) {
+
+  $allowed_lang=getLangs();
   
   $fio = $_POST['fio'];
   $num = $_POST['number'];
