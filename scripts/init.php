@@ -5,12 +5,12 @@
  * (с) Сергей Синица 2007-2020.
  * (с) "КубГУ", 2013.
  */
-global $db;
+
 
 // Диспатчер. Делает запрос $request в соответствии со структурой $urlconf.
 function init($request = array(), $urlconf = array()) {
   // Массив HTTP-ответа.
-
+  global $db;
 
   $response = array();
 
