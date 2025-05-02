@@ -888,7 +888,6 @@
 
 
       <div class="b-form col-12 col-md-6 order-2 order-md-2 px-3 pb-3 pt-1 pt-md-3">
-    
 
         <div class="error_messages" <?php if (empty($messages)) {print 'display="none"';} else {print 'display="block"';} ?>>
 
@@ -910,29 +909,29 @@
 
             <h2> ФОРМА </h2> 
 
-            <input type="hidden" name="uid" value='<?php print $values['uid'];?>' />
+            <input class="input-field" type="hidden" name="uid" value='<?php print $values['uid'];?>' />
             
           <label> 
             ФИО: <br/>
-            <input name="fio" <?php if ($errors['fio'] ) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" />
+            <input class="input-field" name="fio" <?php if ($errors['fio'] ) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" />
           </label> <br/>
 
           <label> 
             Номер телефона: <br />
-            <input name="number" type="tel" 
+            <input class="input-field" name="number" type="tel" 
             <?php if ($errors['number']) {print 'class="error"';} ?> value="<?php print $values['number']; ?>"/>
           </label> <br/>
           <p class="numtext"> *используйте телефонный код +7</p>
 
           <label>
             E-mail: <br/>
-            <input name="email" type="email" 
+            <input class="input-field" name="email" type="email" 
             <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>"/>
           </label> <br/>
 
           <label> 
             Дата рождения: <br/>
-            <input name="birthdate" type="date" 
+            <input class="input-field" name="birthdate" type="date" 
             <?php if ($errors['bdate']) {print 'class="error"';} ?> value="<?php print $values['bdate']; ?>"/>
           </label> <br/>
           
@@ -968,14 +967,16 @@
 
           <label>
             Биография: <br/>
-            <textarea name="biography" <?php if ($errors['bio']) {print 'class="error"';} ?>><?php print $values['bio']; ?></textarea>
+            <textarea class="input-field" name="biography" <?php if ($errors['bio']) {print 'class="error"';} ?>><?php print $values['bio']; ?></textarea>
           </label> <br/>
 
-          <label class="form-checkbox pl-2">
-            <input type="checkbox" name="checkbox"
-            <?php if ($errors['checkbox']) {print 'class="error"';} ?>  <?php if (!$errors['checkbox']) {print 'checked="checked"';} ?>/> 
-            С контрактом ознакомлен 
-          </label> <br/>
+          <div class="checkbox-block d-flex">
+            <label class="form-checkbox pl-2">
+              <input class="custom-checkbox my-2" type="checkbox" name="checkbox"
+              <?php if ($errors['checkbox']) {print 'class="error"';} ?>  <?php if (!$errors['checkbox']) {print 'checked="checked"';} ?>/> 
+              С контрактом ознакомлен 
+            </label> 
+          </div>
 
           <input type="submit" value="Сохранить"/> 
           </form>
