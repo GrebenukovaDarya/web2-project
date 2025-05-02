@@ -1,6 +1,8 @@
 <?php
 
 global $db;
+
+
 $user = 'u68607';
 $pass = '7232008';
 $db = new PDO('mysql:host=localhost;dbname=u68607', $user, $pass,
