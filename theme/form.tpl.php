@@ -63,33 +63,33 @@
 
                                 <li class="pt-2 pt-md-0 py-md-2 px-md-3 float-md-left">  
                                     <div class="dropdown">
-                                        <form action="./index.html" class="li-menu">
+                                        <form action="./index.php" class="li-menu">
                                             <button class="dropbtn pb-2 pb-md-0 px-md-0 px-3"> АДМИНИСТРИРОВАНИЕ <img src="./styles/img/arrow-lang.svg" alt=""> </button>
                                         </form>
                                         <div class="dropdown-content">
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.html">МИГРАЦИЯ</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.html">БЭКАПЫ</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.html">АУДИТ БЕЗОПАСНОСТИ</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.html">ОПТИМИЗАЦИЯ СКОРОСТИ</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.html">ПЕРЕЕЗД НА HTTPS</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">МИГРАЦИЯ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">БЭКАПЫ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">АУДИТ БЕЗОПАСНОСТИ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">ОПТИМИЗАЦИЯ СКОРОСТИ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">ПЕРЕЕЗД НА HTTPS</a>
                                         </div>
                                     </div>
                                   </li>
-                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="index.html" class="nav-link p-0 text-md-center"> ПРОДВИЖЕНИЕ</a></li>
+                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="index.php" class="nav-link p-0 text-md-center"> ПРОДВИЖЕНИЕ</a></li>
                                   <li class="pt-2 py-md-2 px-md-3 float-md-left">  
                                         <div class="dropdown">
-                                          <form action="./index.html" class="li-menu">
+                                          <form action="./index.php" class="li-menu">
                                               <button class="dropbtn pb-2 pb-md-0 px-md-0 px-3 pt-md-0"> О НАС <img src="./styles/img/arrow-lang.svg" alt=""> </button>
                                           </form>
                                         <div class="dropdown-content">
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="index.html">КОМАНДА</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="index.html">ВАКАНСИИ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="index.php">КОМАНДА</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="index.php">ВАКАНСИИ</a>
                                         </div>
                                       </div> 
                                   </li>
                                   
-                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="index.html" class="nav-link p-0 text-md-center"> ПРОЕКТЫ </a></li>
-                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="index.html" class="nav-link p-0 text-md-center"> КОНТАКТЫ </a></li>
+                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="index.php" class="nav-link p-0 text-md-center"> ПРОЕКТЫ </a></li>
+                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="index.php" class="nav-link p-0 text-md-center"> КОНТАКТЫ </a></li>
                               </ul>
                         </div>
                         
