@@ -907,7 +907,7 @@
         <div class="formstyle1" > 
           <form id="myform" class="application" action="" method="POST">
 
-            <h2 class="form-text" > ФОРМА </h2> 
+            <h2 class="white-text" > ФОРМА </h2> 
 
             <input class="input-field" type="hidden" name="uid" value='<?php print $values['uid'];?>' />
             
@@ -921,7 +921,7 @@
             <input class="input-field" name="number" type="tel" 
             <?php if ($errors['number']) {print 'class="error"';} ?> value="<?php print $values['number']; ?>"/>
           </label> <br/>
-          <p class="numtext" class="form-text"> *используйте телефонный код +7</p>
+          <p class="numtext" class="white-text"> *используйте телефонный код +7</p>
 
           <label>
             E-mail: <br/>
@@ -935,7 +935,7 @@
             <?php if ($errors['bdate']) {print 'class="error"';} ?> value="<?php print $values['bdate']; ?>"/>
           </label> <br/>
           
-            <label class="form-text">
+            <label class="white-text">
                 Пол: <br /> 
                 <label> <input type="radio" name="radio-group-1" value="male" 
                 <?php if ($errors['gen']) {print 'class="error"';} ?>
