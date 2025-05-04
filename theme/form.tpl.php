@@ -921,7 +921,7 @@
             <input class="input-field" name="number" type="tel" 
             <?php if ($errors['number']) {print 'class="error"';} ?> value="<?php print $values['number']; ?>"/>
           </label> <br/>
-          <p class="numtext" class="white-text"> *используйте телефонный код +7</p>
+          <p class="numtext"> *используйте телефонный код +7</p>
 
           <label>
             E-mail: <br/>
