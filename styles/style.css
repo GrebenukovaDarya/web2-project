@@ -150,7 +150,7 @@ body{
     right: 0;
     bottom: 0;
     left: 0;
-    background: url(styles/img/drupal-logo-2.svg) no-repeat right bottom;
+    background: url(./img/drupal-logo-2.svg) no-repeat right bottom;
     background-size: contain;
     z-index: 5;
 }
@@ -506,7 +506,7 @@ body{
     border-bottom: 2px solid #dfdede;
 }
 .b-slider .slick-arrow.slick-prev {
-    background: url('/styles/img/arrow-left.svg') no-repeat center;
+    background: url('./img/arrow-left.svg') no-repeat center;
     background-size: contain;
     width: 16px;
     height: 50px;
@@ -516,7 +516,7 @@ body{
     outline: none;
 }
 .b-slider .slick-arrow.slick-next {
-    background: url('/styles/img/arrow-right.svg') no-repeat center;
+    background: url('./img/arrow-right.svg') no-repeat center;
     background-size: contain;
     width: 16px;
     height: 50px;
@@ -656,8 +656,8 @@ footer {
     linear-gradient(270deg,
      rgba(255, 255, 255, .276) -114.85%, 
      rgba(255, 255, 255, 0) 69.04%), 
-     url(styles/img/footer-D-1.svg) no-repeat top center, 
-     url(styles/img/footer-D-2.png) no-repeat bottom right, 
+     url(./img/footer-D-1.svg) no-repeat top center, 
+     url(./img/footer-D-2.png) no-repeat bottom right, 
      #040613;
     background-repeat: no-repeat;
     padding: 40px 0 75px;
