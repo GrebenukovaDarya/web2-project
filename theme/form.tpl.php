@@ -907,7 +907,7 @@
         <div class="formstyle1" > 
           <form id="myform" class="application" action="" method="POST">
 
-            <h2 > ФОРМА </h2> 
+            <h2 class="form-text" > ФОРМА </h2> 
 
             <input class="input-field" type="hidden" name="uid" value='<?php print $values['uid'];?>' />
             
@@ -921,7 +921,7 @@
             <input class="input-field" name="number" type="tel" 
             <?php if ($errors['number']) {print 'class="error"';} ?> value="<?php print $values['number']; ?>"/>
           </label> <br/>
-          <p class="numtext"> *используйте телефонный код +7</p>
+          <p class="numtext" class="form-text"> *используйте телефонный код +7</p>
 
           <label>
             E-mail: <br/>
@@ -935,13 +935,17 @@
             <?php if ($errors['bdate']) {print 'class="error"';} ?> value="<?php print $values['bdate']; ?>"/>
           </label> <br/>
           
-          Пол: <br /> 
-          <label> <input type="radio" name="radio-group-1" value="male" 
-          <?php if ($errors['gen']) {print 'class="error"';} ?>
-          <?php if ($values['gen']=='male') {print 'checked="checked"';} ?>/> Мужской </label>
-          <label> <input type="radio"  name="radio-group-1" value="female" 
-          <?php if ($errors['gen']) {print 'class="error"';} ?>
-          <?php if ($values['gen']=='female') {print 'checked="checked"';} ?>/> Женский</label> <br/>
+            <label class="form-text">
+                Пол: <br /> 
+                <label> <input type="radio" name="radio-group-1" value="male" 
+                <?php if ($errors['gen']) {print 'class="error"';} ?>
+                <?php if ($values['gen']=='male') {print 'checked="checked"';} ?>/> Мужской </label>
+                <label> <input type="radio"  name="radio-group-1" value="female" 
+                <?php if ($errors['gen']) {print 'class="error"';} ?>
+                <?php if ($values['gen']=='female') {print 'checked="checked"';} ?>/> Женский</label> <br/>
+            </label>
+
+          
 
           <?php 
           $user_languages = explode(",",  $values['lang']);
