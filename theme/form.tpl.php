@@ -907,7 +907,7 @@
         <div class="formstyle1" > 
           <form id="myform" class="application" action="" method="POST">
 
-            <h2> ФОРМА </h2> 
+            <h2 > ФОРМА </h2> 
 
             <input class="input-field" type="hidden" name="uid" value='<?php print $values['uid'];?>' />
             
