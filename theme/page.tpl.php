@@ -1,4 +1,4 @@
-<!-- <style>
+<style>
 body {background-color: white; color: black; font-family: "Bitstream Vera Sans", Tahoma, Verdana, Arial, sans-serif; font-size: 76%;}
 h1 {text-align:center;}
 
@@ -20,4 +20,4 @@ li {margin-bottom: 0.3em;}
 foreach ($c['#content'] as $content) {
   echo $content;
 }
-?> -->
+?>
