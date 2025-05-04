@@ -804,15 +804,13 @@ footer {
     font-size: 16px;
     font-weight: 400;
 }
-.formstyle1>label{
-    color:#d7d7d7;
-}
+
 .error_messages{
     color:#d7d7d7;
 }
 
 .formstyle1{
-    color: white;
+    color: #d7d7d7;
 }
 
 @media screen and (min-width: 768px){
