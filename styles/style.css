@@ -509,7 +509,7 @@ body{
     border-bottom: 2px solid #dfdede;
 }
 .b-slider .slick-arrow.slick-prev {
-    background: url('styles/img/arrow-left.svg') no-repeat center;
+    background: url('/styles/img/arrow-left.svg') no-repeat center;
     background-size: contain;
     width: 16px;
     height: 50px;
@@ -519,7 +519,7 @@ body{
     outline: none;
 }
 .b-slider .slick-arrow.slick-next {
-    background: url('styles/img/arrow-right.svg') no-repeat center;
+    background: url('/styles/img/arrow-right.svg') no-repeat center;
     background-size: contain;
     width: 16px;
     height: 50px;
