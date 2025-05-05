@@ -2,6 +2,7 @@
 
 // Обработчик запросов методом GET.
 function admin_get($request) {
+  global $db;
   $query = "SELECT id, fio, tel, email, bdate, gender, biography FROM person"; 
 
   $stmt = $db->prepare($query); 

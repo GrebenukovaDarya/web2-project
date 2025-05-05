@@ -31,6 +31,12 @@
 </head>
 
 <body>
+<script>
+  window.onload = function() {
+    const element = document.getElementById('myform');
+    element.scrollIntoView({ behavior: 'smooth' }); // Плавная прокрутка
+  };
+</script>
 <!--хэдер-->
     <div class="container-fluid page">
       <div class="b-header row d-flex mb-2">
@@ -48,7 +54,7 @@
                       <nav class="navbar">
                         
                           <div class="logo-menu col-md-2 float-md-left order-1 order-md-0">
-                            <a href="index.html">
+                            <a href="form.tpl.php">
                               <img id="logo" src="./styles/img/drupal-coder.svg" alt="" width="140" height="20">
                             </a>
                               <label class="" for="menu" id="menu1" style="background-image: url(../style/image/менюю.png);">≡</label>
@@ -63,33 +69,33 @@
 
                                 <li class="pt-2 pt-md-0 py-md-2 px-md-3 float-md-left">  
                                     <div class="dropdown">
-                                        <form action="./index.php" class="li-menu">
+                                        <form action="form.tpl.php" class="li-menu">
                                             <button class="dropbtn pb-2 pb-md-0 px-md-0 px-3"> АДМИНИСТРИРОВАНИЕ <img src="./styles/img/arrow-lang.svg" alt=""> </button>
                                         </form>
                                         <div class="dropdown-content">
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">МИГРАЦИЯ</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">БЭКАПЫ</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">АУДИТ БЕЗОПАСНОСТИ</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">ОПТИМИЗАЦИЯ СКОРОСТИ</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="./index.php">ПЕРЕЕЗД НА HTTPS</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="form.tpl.php">МИГРАЦИЯ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="form.tpl.php">БЭКАПЫ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="form.tpl.php">АУДИТ БЕЗОПАСНОСТИ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="form.tpl.php">ОПТИМИЗАЦИЯ СКОРОСТИ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="form.tpl.php">ПЕРЕЕЗД НА HTTPS</a>
                                         </div>
                                     </div>
                                   </li>
                                   <li class="li-menu py-2 px-3 float-md-left"> <a  href="index.php" class="nav-link p-0 text-md-center"> ПРОДВИЖЕНИЕ</a></li>
                                   <li class="pt-2 py-md-2 px-md-3 float-md-left">  
                                         <div class="dropdown">
-                                          <form action="./index.php" class="li-menu">
+                                          <form action="form.tpl.php" class="li-menu">
                                               <button class="dropbtn pb-2 pb-md-0 px-md-0 px-3 pt-md-0"> О НАС <img src="./styles/img/arrow-lang.svg" alt=""> </button>
                                           </form>
                                         <div class="dropdown-content">
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="index.php">КОМАНДА</a>
-                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="index.php">ВАКАНСИИ</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="form.tpl.php">КОМАНДА</a>
+                                            <a class="down-links li-menu py-2 px-5 px-md-3" href="form.tpl.php">ВАКАНСИИ</a>
                                         </div>
                                       </div> 
                                   </li>
                                   
-                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="index.php" class="nav-link p-0 text-md-center"> ПРОЕКТЫ </a></li>
-                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="index.php" class="nav-link p-0 text-md-center"> КОНТАКТЫ </a></li>
+                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="form.tpl.php" class="nav-link p-0 text-md-center"> ПРОЕКТЫ </a></li>
+                                  <li class="li-menu py-2 px-3 float-md-left"> <a  href="form.tpl.php" class="nav-link p-0 text-md-center"> КОНТАКТЫ </a></li>
                               </ul>
                         </div>
                         
