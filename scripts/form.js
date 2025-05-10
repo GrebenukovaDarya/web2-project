@@ -47,11 +47,11 @@ window.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // отправка формы
+    // Обработка отправки формы
     form.addEventListener("submit", function(e) {
         e.preventDefault();
         
-        // данные 
+        // Собираем данные формы
         const formData = {
             uid: document.getElementsByName("uid")[0].value,
             fio: document.getElementsByName("fio")[0].value,
@@ -65,14 +65,15 @@ window.addEventListener("DOMContentLoaded", function () {
                              .map(opt => opt.value)
         };
 
+        // Валидация обязательных полей
         if (!formData.fio || !formData.number || !formData.email || !formData.birthdate || 
             !formData["radio-group-1"] || !formData.checkbox || formData["languages[]"].length === 0) {
             alert("Пожалуйста, заполните все обязательные поля формы");
             return;
         }
 
-        // Отправка на сервер
-        fetch('front.php', { 
+        // Отправка данных на сервер
+        fetch('send.php', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
