@@ -1,101 +1,142 @@
 /*node browser: true */ /*global $ */ /*global alert */
 /*global updateContent */
 window.addEventListener("DOMContentLoaded", function () {
-    /*
-        window.onload = function () {
-            const storedFio = localStorage.getItem("field-fio");
-            const storedEmail = localStorage.getItem("field-email");
-            const storedMessage = localStorage.getItem("field-message");
-            const storedNumber = localStorage.getItem("field-number");
-            const storedOrg = localStorage.getItem("field-org");
-    
-            if (storedFio) {
-                document.getElementsByName("field-fio")[0].value = storedFio;
-            }
-            if (storedEmail) {
-                document.getElementsByName("field-email")[0].value = storedEmail;
-            }
-            if (storedMessage) {
-                document.getElementsByName("field-message")[0].value =
-                storedMessage;
-            }
-            if (storedNumber) {
-                document.getElementsByName("field-number")[0].value = storedNumber;
-            }
-            if (storedOrg) {
-                document.getElementsByName("field-org")[0].value = storedOrg;
-            }
-        };
-    
-        const form = document.getElementById("myform");
-    
-        form.addEventListener("input", function () {
-            const fields = [
-                "field-fio",
-                "field-email",
-                "field-number",
-                "field-org",
-                "field-message"
-            ];
-            fields.forEach(function (field) {
-                localStorage.setItem(
-                    field,
-                    document.getElementsByName(field)[0].value
-                );
-            });
-        });
-    */
-        $(function () {
-            $(".formcarryForm").submit(function (e) {
-                e.preventDefault();
-    
-                let email = document.getElementsByName("field-email");
-                let name = document.getElementsByName("field-fio");
-                let number = document.getElementsByName("field-number");
-                const checkbox = document.getElementById("formcheck");
-                let formcheck = true;
-                if (!name[0].value) {
-                    formcheck = false;
-                }
-                if (!email[0].value) {
-                    formcheck = false;
-                }
-                if (!number[0].value) {
-                    formcheck = false;
-                }
-                if (!checkbox.checked) {
-                    formcheck = false;
-                }
-    
-                if (formcheck) {
-                    $.ajax({
-                        complete: function () {
-                            document.getElementById("myform").reset();
-                        },
-                        contentType: false,
-                        data: new FormData(this),
-                        dataType: "json",
-                        error: function (jqXHR) {
-                            const errorObject = jqXHR.responseJSON;
-    
-                            alert("Ошибка: " + errorObject.message);
-                        },
-                        processData: false,
-                        success: function (response) {
-                            if (response.status === "success") {
-                                alert("Форма отправлена!");
-                                document.getElementById("myform").reset();
-                            } else {
-                                alert("Ошибка");
-                                document.getElementById("myform").reset();
-                            }
-                        },
-                        type: "POST",
-                        url: "https://formcarry.com/s/5HKia9oLyPf"
+    // Сохранение данных формы в localStorage
+    window.onload = function () {
+        const fieldsToStore = [
+            "fio", "number", "email", "birthdate", 
+            "biography", "languages[]", "radio-group-1", "checkbox"
+        ];
+
+        fieldsToStore.forEach(function(field) {
+            const storedValue = localStorage.getItem(field);
+            if (storedValue) {
+                if (field === "languages[]") {
+                    const languages = storedValue.split(',');
+                    const select = document.getElementsByName(field)[0];
+                    Array.from(select.options).forEach(option => {
+                        option.selected = languages.includes(option.value);
                     });
+                } else if (field === "checkbox") {
+                    document.getElementsByName(field)[0].checked = storedValue === 'true';
                 } else {
-                    alert("Заполните обязательные поля формы");
+                    document.getElementsByName(field)[0].value = storedValue;
                 }
-            });
+            }
+        });
+    };
+
+    // Сохранение данных при изменении формы
+    const form = document.getElementById("myform");
+    form.addEventListener("input", function () {
+        const fieldsToStore = [
+            "fio", "number", "email", "birthdate", 
+            "biography", "languages[]", "radio-group-1", "checkbox"
+        ];
+
+        fieldsToStore.forEach(function(field) {
+            if (field === "languages[]") {
+                const select = document.getElementsByName(field)[0];
+                const selectedOptions = Array.from(select.selectedOptions).map(opt => opt.value);
+                localStorage.setItem(field, selectedOptions.join(','));
+            } else if (field === "checkbox") {
+                localStorage.setItem(field, document.getElementsByName(field)[0].checked);
+            } else {
+                localStorage.setItem(field, document.getElementsByName(field)[0].value);
+            }
         });
     });
+
+    // отправка формы
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        // данные 
+        const formData = {
+            uid: document.getElementsByName("uid")[0].value,
+            fio: document.getElementsByName("fio")[0].value,
+            number: document.getElementsByName("number")[0].value,
+            email: document.getElementsByName("email")[0].value,
+            birthdate: document.getElementsByName("birthdate")[0].value,
+            biography: document.getElementsByName("biography")[0].value,
+            "radio-group-1": document.querySelector('input[name="radio-group-1"]:checked')?.value,
+            checkbox: document.getElementsByName("checkbox")[0].checked,
+            "languages[]": Array.from(document.getElementsByName("languages[]")[0].selectedOptions)
+                             .map(opt => opt.value)
+        };
+
+        if (!formData.fio || !formData.number || !formData.email || !formData.birthdate || 
+            !formData["radio-group-1"] || !formData.checkbox || formData["languages[]"].length === 0) {
+            alert("Пожалуйста, заполните все обязательные поля формы");
+            return;
+        }
+
+        // Отправка на сервер
+        fetch('front.php', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка сети');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
+                alert('Данные успешно сохранены!');
+                
+                // Если это новый пользователь, показываем его данные
+                if (data.login && data.password) {
+                    alert(`Ваш логин: ${data.login}\nВаш пароль: ${data.password}`);
+                }
+                
+                // Очищаем localStorage после успешной отправки
+                const fieldsToClear = [
+                    "fio", "number", "email", "birthdate", 
+                    "biography", "languages[]", "radio-group-1", "checkbox"
+                ];
+                fieldsToClear.forEach(field => localStorage.removeItem(field));
+                
+                // Очищаем форму, если нужно
+                if (data.clearForm) {
+                    form.reset();
+                }
+            } else {
+                // Показываем ошибки валидации
+                if (data.errors) {
+                    let errorMessage = 'Ошибки при заполнении формы:\n';
+                    for (const [field, error] of Object.entries(data.errors)) {
+                        errorMessage += `${field}: ${error}\n`;
+                    }
+                    alert(errorMessage);
+                } else {
+                    alert('Произошла ошибка при сохранении данных');
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Произошла ошибка при отправке формы');
+        });
+    });
+
+    // Обработка истории браузера (если нужно для popup)
+    window.addEventListener("popstate", function (event) {
+        const popup = document.getElementById("popup");
+        const overlay = document.getElementById("overlay");
+        
+        if (popup && popup.style.display === "block") {
+            popup.style.display = "none";
+            overlay.classList.remove("show");
+            window.history.replaceState("", "", "index.html");
+        }
+        
+        if (updateContent) {
+            updateContent(event.state?.content);
+        }
+    });
+});

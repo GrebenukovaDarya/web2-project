@@ -994,7 +994,7 @@
             С контрактом ознакомлен 
           </label> <br/>
 
-          <input class="submit-btn" type="submit" value="Сохранить"/> 
+          <input class="submit-btn" type="submit" value="Сохранить" id="submit-btn"/>
           </form>
         </div>
 
