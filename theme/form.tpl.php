@@ -913,7 +913,7 @@
 
 
         <div class="formstyle1" > 
-          <form id="myform" class="application" method="POST">
+          <form id="myform" class="application" method="POST" action="index.php">
 
             <h2 class="white-text" > ФОРМА </h2> 
 
