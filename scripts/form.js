@@ -1,20 +1,34 @@
-document.getElementById("myform").addEventListener("submit", function(event) {
-  event.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('myform');
+    if (!form) return;
   
-  let formData = new FormData(this);
-
-  fetch('index.php', {
-      method: 'POST',
-      body: formData
-  })
-  .then(response => response.json()) 
-  ..then(data => {
-    console.log(data);
-    // Обновление страницы или вывода сообщений
-    document.querySelector('.error_messages').style.display = 'block';
-    document.querySelector('.error_messages').innerHTML = data.message;
-})
-  .catch(error => {
-      console.error('Ошибка при отправке формы:', error);
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+  
+      const formData = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: formData
+        });
+  
+        const result = await response.json();
+        const msgDiv = document.getElementById('messages');
+        msgDiv.innerHTML = '';
+  
+        if (result.success) {
+          msgDiv.innerHTML = '<div class="success">Данные успешно отправлены!</div>';
+          form.reset();
+        } else {
+          Object.entries(result.errors).forEach(([key, val]) => {
+            msgDiv.innerHTML += `<div class="error">Ошибка поля ${key}</div>`;
+          });
+        }
+      } catch (error) {
+        alert('Ошибка при отправке: ' + error.message);
+      }
+    });
   });
-});
