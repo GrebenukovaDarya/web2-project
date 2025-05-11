@@ -19,14 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const msgDiv = document.getElementById('messages');
         msgDiv.innerHTML = '';
   
+        // Выводим сообщения
         if (result.success) {
-          msgDiv.innerHTML = '<div class="success">Данные успешно отправлены!</div>';
+          result.messages.forEach(message => {
+              msgDiv.innerHTML += `<div class="success">${message}</div>`;
+          });
           form.reset();
         } else {
-          Object.entries(result.errors).forEach(([key, val]) => {
-            msgDiv.innerHTML += `<div class="error">Ошибка поля ${key}</div>`;
-          });
+            result.errors.forEach((error, key) => {
+                msgDiv.innerHTML += `<div class="error">Ошибка поля ${key}: ${error}</div>`;
+            });
         }
+        msgDiv.style.display = 'block'; 
       } catch (error) {
         alert('Ошибка при отправке: ' + error.message);
       }
