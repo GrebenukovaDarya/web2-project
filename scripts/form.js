@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       // Отправляем данные на сервер
-      fetch('api.php', {
+      fetch('scripts/api.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
