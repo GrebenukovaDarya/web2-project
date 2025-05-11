@@ -897,7 +897,7 @@
 
       <div class="b-form col-12 col-md-6 order-2 order-md-2 px-3 pb-3 pt-1 pt-md-3">
 
-        <!-- <div class="error_messages" <?php if (empty($messages)) {print 'display="none"';} else {print 'display="block"';} ?>>
+        <div class="error_messages" <?php if (empty($messages)) {print 'display="none"';} else {print 'display="block"';} ?>>
 
           <?php
           if (!empty($messages)) {
@@ -909,16 +909,6 @@
           }
           ?>
 
-        </div> -->
-          <div id="messages" class="error_messages" <?php if (empty($messages)) {echo 'style="display:none;"';} ?>>
-          <?php
-              if (!empty($messages)) {
-                  foreach ($messages as $message) {
-                      echo '<div>' . $message . '</div>';
-                  }
-                }
-            ?>
-          </div>
 
 
         <div class="formstyle1" > 

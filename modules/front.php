@@ -168,18 +168,24 @@ function front_post($request, $db) {
   $biography = $_POST['biography'];
   $gen = $_POST['radio-group-1'];
   $languages = $_POST['languages'] ?? []; 
+  $uid = $_POST['uid'] ?? '';
 
+  $messages = [];
+  $error_messages = [];
   $errors = FALSE;
 
   if (empty($fio)) {
     setcookie('fio_error', '1');
+    $error_messages['fio'] = 'Имя не указано';
     $errors = TRUE;
   } elseif (strlen($fio) > 128 ) {
     setcookie('fio_error', '2');
+    $error_messages['fio'] = 'Имя не должно превышать 128 символов';
     $errors = TRUE;
   } elseif ( !preg_match('/^[a-zA-Zа-яА-ЯёЁ\s]+$/u', $fio)) {
     setcookie('fio_error', '3');
     $errors = TRUE;
+    $error_messages['fio'] = 'Имя должно содержать только буквы и пробелы';
   }
   setcookie('fio_value', $fio, time() + 365 * 24 * 60 * 60);
 
@@ -187,17 +193,21 @@ function front_post($request, $db) {
   if (empty($num)) {
     setcookie('number_error', '1');
     $errors = TRUE;
+    $error_messages['number'] = 'Номер не указан';
   } elseif (!preg_match('/^\+7\d{10}$/', $num)) {
     setcookie('number_error', '2');
     $errors = TRUE;
+    $error_messages['number'] = 'Номер указан некорректно';
   }
   setcookie('number_value', $num, time() + 365 * 24 * 60 * 60);
 
   if (empty($email) ) {
     setcookie('email_error', '1');
     $errors = TRUE;
+    $error_messages['email'] = 'Email не указан';
   } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
     setcookie('email_error', '2');
+    $error_messages['email'] = 'Email-error';
     $errors = TRUE;
   }
   setcookie('email_value', $email, time() + 365 * 24 * 60 * 60);
@@ -205,6 +215,7 @@ function front_post($request, $db) {
   if (empty($gen)){
     setcookie('gen_error', '1');
     $errors = TRUE;
+    $error_messages['gen'] = 'Пол не указан';
   } else{
     $allowed_genders = ["male", "female"];
     if (!in_array($gen, $allowed_genders)) {
@@ -217,18 +228,22 @@ function front_post($request, $db) {
   if (empty($biography)) {
     setcookie('bio_error', '1');
     $errors = TRUE;
+    $error_messages['bio'] = 'Биография не указана';
   } elseif(strlen($biography) > 512){
     setcookie('bio_error', '2');
     $errors = TRUE;
+    $error_messages['bio'] = 'Биография не должна быть более 512 символов';
   } elseif(preg_match('/[<>{}\[\]]|<script|<\?php/i', $biography)){
     setcookie('bio_error', '3');
     $errors = TRUE;
+    $error_messages['bio'] = 'Недопустимые символы в биографии';
   }
   setcookie('bio_value', $biography, time() + 365 * 24 * 60 * 60);
 
   if(empty($languages)) {
     setcookie('lang_error', '1');
     $errors = TRUE;
+    $error_messages['lang'] = 'Выберите хотя бы 1 язык';
   } else {
     foreach ($languages as $lang) {
       if (!in_array($lang, $allowed_lang)) {
@@ -243,12 +258,14 @@ function front_post($request, $db) {
   if(empty($bdate)) {
     setcookie('bdate_error', '1');
     $errors = TRUE;
+    $error_messages['bdate'] = 'Укажите дату рождения';
   }
   setcookie('bdate_value', $bdate, time() + 365 * 24 * 60 * 60);
 
   if (!isset($_POST["checkbox"])) {
     setcookie('checkbox_error', '1');
     $errors = TRUE;
+    $error_messages['checkbox'] = 'Ознакомьтесь с контрактом';
   }
   setcookie('checkbox_value', $_POST["checkbox"], time() + 365 * 24 * 60 * 60);
 
@@ -278,7 +295,9 @@ function front_post($request, $db) {
 
 
     // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
+  try{
 
+  
   if (!empty($_SERVER['PHP_AUTH_USER']) && !empty($_SERVER['PHP_AUTH_PW']) &&
   admin_login_check($_SERVER['PHP_AUTH_USER']) && admin_password_check($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
   
@@ -319,17 +338,49 @@ function front_post($request, $db) {
       setcookie('password', $password);
       try {
         INSERT($login, $hash_password);
+        
       }
       catch(PDOException $e){
         print('Error : ' . $e->getMessage());
         exit();
       }
+      $messages[] = 'Пользователь успешно создан';
+      $response_data = [
+        'login' => $login,
+        'password' => $password
+    ];
     }
+    
 
   }
+}catch(PDOException $e) {
+  print('Error : ' . $e->getMessage());
+}
 
-  setcookie('save', '1');
-  return redirect();
+if ($is_ajax) {
+  header('Content-Type: application/json');
+  echo json_encode([
+      'success' => empty($errors),
+      'messages' => $messages,
+      'error_messages' => $messages,
+      'data' => $response_data ?? null
+  ]);
+  exit();
+} else {
+  // Обычная обработка (редиректы и т.д.)
+  if ($errors) {
+
+      return redirect();
+  } else {
+      setcookie('save', '1', time() + 3600);
+      if (isset($login) && isset($password)) {
+          setcookie('login', $login, time() + 3600);
+          setcookie('password', $password, time() + 3600);
+      }
+      return redirect();
+  }
+}
+
 }
 
 
