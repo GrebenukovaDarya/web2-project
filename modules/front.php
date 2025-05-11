@@ -151,6 +151,8 @@ function front_get($request, $db) {
 
 // Обработчик запросов методом POST.
 function front_post($request, $db) {
+  $is_ajax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+  strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
   $allowed_lang=getLangs();
   
@@ -253,6 +255,11 @@ function front_post($request, $db) {
     header('Location: index.php?uid=' . $_POST['uid'] . '');
     exit();
   }
+  if ($is_ajax) {
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'errors' => $_COOKIE]);
+    exit;
+  }
   else{
     header('Location: index.php');
       exit();
@@ -322,6 +329,11 @@ function front_post($request, $db) {
   }
 
   setcookie('save', '1');
+  if ($is_ajax) {
+    header('Content-Type: application/json');
+    echo json_encode(['success' => true, 'message' => 'Данные успешно сохранены']);
+    exit;
+  }
   return redirect();
 }
 
