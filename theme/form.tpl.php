@@ -16,6 +16,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     
+    <script src="./scripts/form.js" defer></script>
+
     <!-- Наши js и css файлы -->
 
     <link rel="stylesheet"  href="./styles/style.css">
@@ -911,7 +913,7 @@
 
 
         <div class="formstyle1" > 
-          <form id="myform" class="application" action="" method="POST">
+          <form id="myform" class="application" method="POST">
 
             <h2 class="white-text" > ФОРМА </h2> 
 
