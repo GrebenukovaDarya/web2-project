@@ -112,6 +112,7 @@ function front_get($request, $db) {
     $messages[] = '<div class="error">Подтвердите, что вы ознакомлены с контрактом.</div>';
   }
 
+  $values['uid'] = '';
   $values['fio'] = empty($_COOKIE['fio_value']) ? '' : strip_tags($_COOKIE['fio_value']);
   $values['number'] = empty($_COOKIE['number_value']) ? '' : strip_tags($_COOKIE['number_value']);
   $values['email'] = empty($_COOKIE['email_value']) ? '' : strip_tags($_COOKIE['email_value']);

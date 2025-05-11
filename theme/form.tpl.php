@@ -913,12 +913,12 @@
 
 
         <div class="formstyle1" > 
-          <form id="myform" class="application" method="POST" action="form">
+          <form id="myform" class="application" method="POST">
 
             <h2 class="white-text" > ФОРМА </h2> 
 
-            <input class="input-field" type="hidden" name="uid" value='<?php print $values['uid'];?>' />
-            
+            <!-- <input class="input-field" type="hidden" name="uid" value='<?php print $values['uid'];?>' /> -->
+            <input class="input-field" type="hidden" name="uid" value='<?php print isset($values['uid']) ? $values['uid'] : ''; ?>' />
           <label> 
             ФИО: <br/>
             <input class="input-field" name="fio" <?php if ($errors['fio'] ) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" />
