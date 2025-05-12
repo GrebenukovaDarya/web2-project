@@ -1,7 +1,6 @@
 <?php
 
 require_once './scripts/db.php';
-require_once './scripts/init.php';
 
 // Обработчик запросов методом GET.
 function front_get($request, $db) {
@@ -158,14 +157,12 @@ function front_get($request, $db) {
 
 // Обработчик запросов методом POST.
 function front_post($request, $db) {
-
-  /*
   $is_ajax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
   if ($is_ajax) {
     header('Content-Type: application/json');
-  }*/
+  }
 
   if (!validateCsrfToken()) {
     // if($is_ajax){
