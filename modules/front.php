@@ -146,11 +146,12 @@ function front_get($request, $db) {
     'allowed_lang' => $allowed_lang,
     'values' => $values,
   ];
+  /*
   echo json_encode([
     'success' => empty($errors),
     'messages' => $messages,
     'errors' => $errors
-  ]);
+  ]);*/
   return theme('form', $data);
 }
 

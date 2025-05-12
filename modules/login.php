@@ -8,7 +8,7 @@ function login_get($request, $db) {
     }
     
     // Формируем HTML-код формы входа
-      return theme('login');
+      return theme('form');
   }
   
 
