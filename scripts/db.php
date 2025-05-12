@@ -146,7 +146,7 @@ function users_table(){
               $r.="<td>$langs_value1</td>";
 
           $r.="<td class=\"buttons\">
-          <form action=\"admin.php\" method=\"POST\">
+          <form action=\"\" method=\"POST\">
           <input type=\"hidden\" name=\"del_by_uid\" value=\"$uid\">
           <input class=\"delete_button\" type=\"submit\" value=\"удалить\">
           </form>";
