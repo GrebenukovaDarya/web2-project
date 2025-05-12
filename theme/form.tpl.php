@@ -1003,12 +1003,14 @@
           
           </form>
 
-          <?php                                         
+          <?php                            
+            print('<a href="' . url('login') . '">Войти</a>');      
+            print('<a href="' . url('admin') . '">admin</a>');           
             if(!isset($_COOKIE[session_name()]) || empty($_SESSION['login'])){
               print('<a href="' . url('login') . '">Войти</a>');
             }
           ?>
-          
+
         </div>
 
       </div>
