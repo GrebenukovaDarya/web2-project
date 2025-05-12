@@ -1,22 +1,5 @@
-<?php
-if(empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW']) || !admin_login_check($user_log, $db) ||
-!admin_password_check($user_log, $user_pass, $db)){
-    header('Location: admin.php');
-}
-?>
 
-<!DOCTYPE html>
-<html lang="ru">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"  href="./styles/table_style.css"> 
-    <meta http-equiv="refresh"/>
-    <title> ADMIN </title>
-  </head>
-
-  <body>
     <table>
         <thead> 
             <tr>
@@ -45,5 +28,3 @@ if(empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW']) || !admin_
             ?>
         </tbody>
     </table>
-  </body>
-</html>

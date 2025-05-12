@@ -31,12 +31,13 @@ function admin_get($request, $db) {
   return theme('admin', $data);
 }
 
-function admin_post($request, $url_param_1) {
+function admin_post($request, $db) {
 
   if(!empty($_POST['del_by_uid']) && !empty($_SERVER['PHP_AUTH_USER'])){
     del_by_uid($_POST['del_by_uid']);
   } 
 
+  return redirect('admin');
 }
 
 /*
