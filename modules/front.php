@@ -1,6 +1,7 @@
 <?php
 
 require_once './scripts/db.php';
+require_once './scripts/init.php';
 
 // Обработчик запросов методом GET.
 function front_get($request, $db) {
