@@ -29,7 +29,8 @@ $conf = array(
 $urlconf = array(
   '' => array('module' => 'front'),  // Главная страница
   '/^login$/' => array('module' => 'login'), // Страница логина
-  '/^admin$/' => array('module' => 'admin') // Страница админки
+  '/^admin$/' => array('module' => 'admin'),
+  '/^admin.php$/' => array('module' => 'admin') // Страница админки
   // '/^admin$/' => array('module' => 'admin', 'auth' => 'auth_basic'),
   // '/^admin\/(\d+)$/' => array('module' => 'admin', 'auth' => 'auth_basic'),
 /*  '/^order\/(\d+)$/' => array('module' => 'order', 'auth' => 'auth_db_basic'),
