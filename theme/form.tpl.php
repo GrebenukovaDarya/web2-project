@@ -919,29 +919,29 @@
 
             <!-- <input class="input-field" type="hidden" name="uid" value='<?php print $values['uid'];?>' /> -->
             <input class="input-field" type="hidden" name="uid" value='<?php print isset($values['uid']) ? $values['uid'] : ''; ?>' />
-          <label> 
-            ФИО: <br/>
-            <input class="input-field" name="fio" <?php if ($errors['fio'] ) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" />
-          </label> <br/>
+            <label> 
+              ФИО: <br/>
+              <input class="input-field" name="fio" <?php if ($errors['fio'] ) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" />
+            </label> <br/>
 
-          <label> 
-            Номер телефона: <br />
-            <input class="input-field" name="number" type="tel" 
-            <?php if ($errors['number']) {print 'class="error"';} ?> value="<?php print $values['number']; ?>"/>
-          </label> <br/>
-          <p class="numtext"> *используйте телефонный код +7</p>
+            <label> 
+              Номер телефона: <br />
+              <input class="input-field" name="number" type="tel" 
+              <?php if ($errors['number']) {print 'class="error"';} ?> value="<?php print $values['number']; ?>"/>
+            </label> <br/>
+            <p class="numtext"> *используйте телефонный код +7</p>
 
-          <label>
-            E-mail: <br/>
-            <input class="input-field" name="email" type="email" 
-            <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>"/>
-          </label> <br/>
+            <label>
+              E-mail: <br/>
+              <input class="input-field" name="email" type="email" 
+              <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>"/>
+            </label> <br/>
 
-          <label> 
-            Дата рождения: <br/>
-            <input class="input-field" name="birthdate" type="date" 
-            <?php if ($errors['bdate']) {print 'class="error"';} ?> value="<?php print $values['bdate']; ?>"/>
-          </label> <br/>
+            <label> 
+              Дата рождения: <br/>
+              <input class="input-field" name="birthdate" type="date" 
+              <?php if ($errors['bdate']) {print 'class="error"';} ?> value="<?php print $values['bdate']; ?>"/>
+            </label> <br/>
           
             <label class="white-text">
                 Пол: <br /> 

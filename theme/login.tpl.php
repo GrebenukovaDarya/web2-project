@@ -17,6 +17,9 @@
         Пароль <br/>
         <input name="password" />
       </label> <br/>
+
+      <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+      
       <input class="login_button" type="submit" value="Войти" />
     </form>
 
