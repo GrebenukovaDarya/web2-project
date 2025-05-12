@@ -1,9 +1,8 @@
 <?php
 
 require_once './scripts/db.php';
-require_once './scripts/init.php';
 
-function admin_get($request) {
+function admin_get($request, $db) {
 
   $user_log=$_SERVER['PHP_AUTH_USER'];
   $user_pass=$_SERVER['PHP_AUTH_PW'];
