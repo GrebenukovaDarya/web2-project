@@ -163,6 +163,7 @@ function front_post($request, $db) {
     header('Content-Type: application/json');
   }*/
 
+  /*
   if (!validateCsrfToken()) {
     // if($is_ajax){
     //   http_response_code(403);
@@ -175,7 +176,7 @@ function front_post($request, $db) {
     // }
     http_response_code(403);
     exit;
-  }
+  }*/
 
   /*
     echo json_encode([
