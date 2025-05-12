@@ -996,10 +996,9 @@
             С контрактом ознакомлен 
           </label> <br/>
 
-          <input class="submit-btn" type="submit" value="Сохранить" id="submit-btn"/>
-
           <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
 
+          <input class="submit-btn" type="submit" value="Сохранить" id="submit-btn"/>
           
           </form>
 
