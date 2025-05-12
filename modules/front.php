@@ -366,7 +366,8 @@ if ($is_ajax) {
       'error_messages' => $messages,
       'data' => $response_data ?? null
   ]);
-  exit();
+  //exit();
+  return redirect();
 } else {
   // Обычная обработка (редиректы и т.д.)
   if ($errors) {
