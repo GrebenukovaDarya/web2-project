@@ -160,6 +160,35 @@ function front_post($request, $db) {
   $is_ajax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
   strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
+  if ($is_ajax) {
+    header('Content-Type: application/json');
+  }
+
+  if (!validateCsrfToken()) {
+    if($is_ajax){
+      http_response_code(403);
+      echo json_encode([
+        'success' => false,
+        'messge' => 'Ошибка CSRF токена',
+        'csrf_error' => true
+      ]);
+      exit;
+    }
+    http_response_code(403);
+    exit;
+  }
+
+  /*
+    echo json_encode([
+      'success' => empty($errors),
+      'messages' => $messages,
+      'error_messages' => $messages,
+      'data' => $response_data ?? null
+  ]);
+  exit();
+  //return redirect();
+} else { */
+
   $allowed_lang=getLangs();
   
   $fio = $_POST['fio'];
@@ -358,17 +387,7 @@ function front_post($request, $db) {
   print('Error : ' . $e->getMessage());
 }
 
-if ($is_ajax) {
-  header('Content-Type: application/json');
-  echo json_encode([
-      'success' => empty($errors),
-      'messages' => $messages,
-      'error_messages' => $messages,
-      'data' => $response_data ?? null
-  ]);
-  exit();
-  //return redirect();
-} else {
+
   // Обычная обработка (редиректы и т.д.)
   if ($errors) {
 
@@ -381,7 +400,6 @@ if ($is_ajax) {
       }
       return redirect();
   }
-}
 
 }
 
