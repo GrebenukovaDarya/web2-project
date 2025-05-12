@@ -9,7 +9,8 @@ function login_get($request, $db) {
     }
     
     // Формируем HTML-код формы входа
-      return theme('form');
+    //  return theme('form');
+    return redirect();
   }
   
 
