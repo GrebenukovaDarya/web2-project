@@ -38,10 +38,11 @@ function admin_post($request, $db) {
   } 
 
   //return redirect('admin');
+  $language_table = language_stats();
+  $user_table = users_table();
   $data = [
     'language_table' => $language_table,
     'user_table'=>$user_table
   ];
-
   return theme('admin', $data);
 }
