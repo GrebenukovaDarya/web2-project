@@ -996,15 +996,16 @@
             С контрактом ознакомлен 
           </label> <br/>
 
+          <!--
           <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
+            -->
+
 
           <input class="submit-btn" type="submit" value="Сохранить" id="submit-btn"/>
           
           </form>
 
-          <?php                            
-            print('<a href="' . url('login') . '">Войти</a>');      
-            print('<a href="' . url('admin') . '">admin</a>');           
+          <?php                                     
             if(!isset($_COOKIE[session_name()]) || empty($_SESSION['login'])){
               print('<a href="' . url('login') . '">Войти</a>');
             }

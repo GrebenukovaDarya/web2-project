@@ -23,7 +23,7 @@ function login_post($request, $db) {
 
     if (!validateCsrfToken()) {
         http_response_code(403);
-        die('error');
+        die('csrf error');
       }
   
       $login = $request['post']['login'];
@@ -32,7 +32,6 @@ function login_post($request, $db) {
     if (session_status() == PHP_SESSION_NONE) { 
         session_start();
     }
-  
 
     if (isValid($login) && password_check($login, $password)) {
         
