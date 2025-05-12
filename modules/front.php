@@ -165,15 +165,15 @@ function front_post($request, $db) {
   }
 
   if (!validateCsrfToken()) {
-    if($is_ajax){
-      http_response_code(403);
-      echo json_encode([
-        'success' => false,
-        'messge' => 'Ошибка CSRF токена',
-        'csrf_error' => true
-      ]);
-      exit;
-    }
+    // if($is_ajax){
+    //   http_response_code(403);
+    //   echo json_encode([
+    //     'success' => false,
+    //     'messge' => 'Ошибка CSRF токена',
+    //     'csrf_error' => true
+    //   ]);
+    //   exit;
+    // }
     http_response_code(403);
     exit;
   }

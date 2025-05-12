@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let errors = FALSE;
 
     fields.forEach(field => {
-        const el=this.querySelector('[name="${field}"]');
+        const el=document.querySelector('[name="${field}"]');
         if(!el || !el.value.trim()) {
             errors = true;
 
