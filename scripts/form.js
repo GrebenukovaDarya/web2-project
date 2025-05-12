@@ -25,18 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let error_messages = [];
     let errors = FALSE;
 
-    fields.forEach(field => {
-        const el=document.querySelector('[name="${field}"]');
-        if(!el || !el.value.trim()) {
-            errors = true;
+    // fields.forEach(field => {
+    //     const el=document.querySelector('[name="${field}"]');
+    //     if(!el || !el.value.trim()) {
+    //         errors = true;
 
-        }
-    });
+    //     }
+    // });
     
-    if(errors){
-        alert("ERRORS");
-        return;
-    }
+    // if(errors){
+    //     alert("ERRORS");
+    //     return;
+    // }
 
 //     const fio= document.querySelector
 //     if (empty($fio)) {
