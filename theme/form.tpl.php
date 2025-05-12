@@ -1002,6 +1002,13 @@
 
           
           </form>
+
+          <?php                                         
+            if(!isset($_COOKIE[session_name()]) || empty($_SESSION['login'])){
+              print('<a href="' . url('login') . '">Войти</a>');
+            }
+          ?>
+          
         </div>
 
       </div>
