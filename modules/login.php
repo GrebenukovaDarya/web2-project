@@ -2,7 +2,7 @@
 require_once './scripts/db.php';
 global $db;
 
-function login_get($request, $data) {
+function login_get($request, $db) {
     
     if (!empty($_SESSION['login'])) {
         return redirect('./');
