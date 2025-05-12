@@ -1,14 +1,15 @@
 <?php
 require_once './scripts/db.php';
 global $db;
-function login_get($request, $db) {
+
+function login_get($request, $data) {
     
     if (!empty($_SESSION['login'])) {
         return redirect('./');
     }
     
     // Формируем HTML-код формы входа
-      return theme('form');
+      return theme('form', $data);
   }
   
 
