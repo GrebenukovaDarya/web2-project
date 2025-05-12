@@ -37,7 +37,8 @@ function admin_post($request, $db) {
     del_by_uid($_POST['del_by_uid']);
   } 
 
-  //return redirect('admin');
+  return redirect('admin');
+  /*
   $language_table = language_stats();
   $user_table = users_table();
   $data = [
@@ -45,4 +46,5 @@ function admin_post($request, $db) {
     'user_table'=>$user_table
   ];
   return theme('admin', $data);
+  */
 }
