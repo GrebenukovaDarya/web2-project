@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     let error_messages = [];
-    let errors = FALSE;
+    // let errors = FALSE; неправильная строка по синтаксису
 
     // fields.forEach(field => {
     //     const el=document.querySelector('[name="${field}"]');
