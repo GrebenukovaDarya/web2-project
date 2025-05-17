@@ -157,38 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
           } else {
             showErrors(result.errors || {}, form, messagesContainer);
           }
-        //   // Очищаем предыдущие сообщения
-        //   messagesContainer.innerHTML = '';
-        //   messagesContainer.style.display = 'block';
-          
-        //   if (result.success) {
-        //       // Показываем успешные сообщения
-        //       result.messages.forEach(message => {
-        //           messagesContainer.innerHTML += `<div class="success">${message}</div>`;
-        //       });
-              
-        //       // Если есть данные логина/пароля
-        //       if (result.data && result.data.login && result.data.password) {
-        //           messagesContainer.innerHTML += 
-        //               `<div class="success">Ваш логин: ${result.data.login}<br>Ваш пароль: ${result.data.password}</div>`;
-        //       }
-              
-        //       // Очищаем ошибки валидации
-        //       document.querySelectorAll('.error').forEach(el => {
-        //           el.classList.remove('error');
-        //       });
-        //   } else {
-        //       // Показываем ошибки
-        //       Object.entries(result.errors).forEach(([field, error]) => {
-        //           messagesContainer.innerHTML += `<div class="error">${error}</div>`;
-                  
-        //           // Подсвечиваем поле с ошибкой
-        //           const fieldElement = form.querySelector(`[name="${field}"]`);
-        //           if (fieldElement) {
-        //               fieldElement.classList.add('error');
-        //           }
-        //       });
-        //   }
       } catch (error) {
           messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
           messagesContainer.style.display = 'block';
@@ -202,15 +170,15 @@ document.addEventListener('DOMContentLoaded', function() {
 // Функция валидации формы
 function validateForm(form) {
     const errors = {};
-    const fio = form.querySelector('[name="fio"]').value.trim();
-    const phone = form.querySelector('[name="number"]').value.trim();
-    const email = form.querySelector('[name="email"]').value.trim();
-    const date = form.querySelector('[name="birthdate"]').value;
+    const fio = form.querySelector('[name="fio"]')?.value.trim();
+    const phone = form.querySelector('[name="number"]')?.value.trim();
+    const email = form.querySelector('[name="email"]')?.value.trim();
+    const date = form.querySelector('[name="birthdate"]')?.value;
     const gender = form.querySelector('[name="radio-group-1"]:checked');
     const languages = Array.from(form.querySelectorAll('[name="languages[]"]:checked')).map(el => el.value);
-    const biography = form.querySelector('[name="biography"]').value.trim();
-    const contract = form.querySelector('[name="checkbox"]').checked;
-    
+    const biography = form.querySelector('[name="biography"]')?.value.trim();
+    const contract = form.querySelector('[name="checkbox"]')?.checked;
+
     // Проверка ФИО
     if (!fio) {
       errors.fio = 'Заполните имя, пожалуйста';
@@ -222,53 +190,65 @@ function validateForm(form) {
     
     // Проверка телефона
     if (!phone) {
-      errors.phone = 'Введите номер телефона';
+      errors.number = 'Введите номер телефона';
     } else if (!/^\+7\d{10}$/.test(phone)) {
-      errors.phone = 'Номер должен быть в формате +7XXXXXXXXXX';
+      errors.number = 'Номер должен быть в формате +7XXXXXXXXXX';
     }
     
+    // Проверка email
     if (!email) {
-        errors.email = 'Введите email';
+      errors.email = 'Введите email';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        errors.email = 'Введите корректный email';
+      errors.email = 'Введите корректный email';
     }
+    
+    // Проверка даты рождения
     if (!date) {
-        errors.date = 'Выберите дату рождения';
+      errors.birthdate = 'Выберите дату рождения';
     } else {
-        const birthDate = new Date(date);
-        const minDate = new Date();
-        minDate.setFullYear(minDate.getFullYear() - 120); // 120 лет назад
-        const maxDate = new Date();
-        maxDate.setFullYear(maxDate.getFullYear() - 0); 
-        
-        if (birthDate < minDate) {
-            errors.date = 'Дата рождения не может быть раньше ' + minDate.toLocaleDateString();
-        } else if (birthDate > maxDate) {
-            errors.date = 'Вам должно быть больше 0 лет';
-        }
+      const birthDate = new Date(date);
+      const minDate = new Date();
+      minDate.setFullYear(minDate.getFullYear() - 120);
+      const maxDate = new Date();
+      maxDate.setFullYear(maxDate.getFullYear() - 0);
+      
+      if (birthDate < minDate) {
+        errors.birthdate = 'Дата рождения не может быть раньше ' + minDate.toLocaleDateString();
+      } else if (birthDate > maxDate) {
+        errors.birthdate = 'Вам должно быть больше 0 лет';
+      }
     }
+    
+    // Проверка пола
     if (!gender) {
-        errors.gender = 'Выберите пол';
+      errors['radio-group-1'] = 'Выберите пол';
     }
+    
+    // Проверка языков
     if (languages.length === 0) {
-        errors.favorite_languages = 'Выберите хотя бы один язык';
+      errors.languages = 'Выберите хотя бы один язык';
     } else if (languages.length > 3) {
-        errors.favorite_languages = 'Можно выбрать не более 3 языков';
+      errors.languages = 'Можно выбрать не более 3 языков';
     }
+    
+    // Проверка биографии
     if (!biography) {
-        errors.biography = 'Заполните биографию';
+      errors.biography = 'Заполните биографию';
     } else if (biography.length > 512) {
-        errors.biography = 'Биография не должна превышать 512 символов';
+      errors.biography = 'Биография не должна превышать 512 символов';
     } else if (/[<>{}[\]]|<\?php|<script/i.test(biography)) {
-        errors.biography = 'Биография содержит запрещенные символы';
+      errors.biography = 'Биография содержит запрещенные символы';
     }
+    
+    // Проверка согласия
     if (!contract) {
-        errors.contract = 'Необходимо согласиться с условиями';
+      errors.checkbox = 'Необходимо согласиться с условиями';
     }
+    
     return errors;
   }
   
-  // Показать ошибки
+  // Функция отображения ошибок
   function showErrors(errors, form, container) {
     container.innerHTML = '';
     container.style.display = 'block';
