@@ -212,13 +212,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function validateForm() {
     const errors = {};
     const fio = form.querySelector('[name="fio"]').value.trim();
-    const phone = form.querySelector('[name="phone"]').value.trim();
+    const phone = form.querySelector('[name="number"]').value.trim();
     const email = form.querySelector('[name="email"]').value.trim();
-    const date = form.querySelector('[name="date"]').value;
-    const gender = form.querySelector('[name="gender"]:checked');
-    const languages = Array.from(form.querySelectorAll('[name="favorite_languages[]"]:checked')).map(el => el.value);
+    const date = form.querySelector('[name="birthdate"]').value;
+    const gender = form.querySelector('[name="radio-group-1"]:checked');
+    const languages = Array.from(form.querySelectorAll('[name="languages[]"]:checked')).map(el => el.value);
     const biography = form.querySelector('[name="biography"]').value.trim();
-    const contract = form.querySelector('[name="contract"]').checked;
+    const contract = form.querySelector('[name="checkbox"]').checked;
     
     // Проверка ФИО
     if (!fio) {
