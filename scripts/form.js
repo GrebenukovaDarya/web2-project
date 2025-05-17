@@ -7,11 +7,17 @@ document.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      const submitBtn = form.querySelector('[type="submit"]');
+      const submitBtn = form.querySelector('#submit-btn');
       const originalBtnText = submitBtn.value;
       submitBtn.disabled = true;
       submitBtn.value = 'Отправка...';
-
+      const errors = validateForm(form);
+      if (Object.keys(errors).length > 0) {
+        showErrors(errors, form, messagesContainer);
+        submitBtn.disabled = false;
+        submitBtn.value = originalBtnText;
+        return;
+      }
     //   ----------------
     //const fields = ['fio', 'number', 'email', 'birthdate', 'radio-group-1','biography', 'checkbox', 'languages'];
     //let error_messages = [];
@@ -130,13 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       try {
                         
-          const errors = validateForm(form);
-          if (Object.keys(errors).length > 0) {
-            showErrors(errors, form, messagesContainer);
-            submitBtn.disabled = false;
-            submitBtn.value = originalBtnText;
-            return;
-          }
+          
           const formData = new FormData(form);
 
         //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
