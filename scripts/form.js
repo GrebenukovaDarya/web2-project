@@ -156,12 +156,13 @@ function validateForm(form) {
       
       
       try {
-                        
+        console.log('Я тут был!');
         const errors = validateForm(form);
         if (Object.keys(errors).length > 0) {
           showErrors(errors, form, messagesContainer);
           submitBtn.disabled = false;
-          submitBtn.value = originalBtnText;
+            submitBtn.value = originalBtnText;
+            console.log('Данные формы:', Object.fromEntries(formData.entries()));
           return;
         }
           const formData = new FormData(form);
