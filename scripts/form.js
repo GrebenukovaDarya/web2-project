@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      const submitBtn = form.querySelector('#submit-btn');
+      const submitBtn = form.querySelector('[type="submit"]');
       const originalBtnText = submitBtn.value;
       submitBtn.disabled = true;
       submitBtn.value = 'Отправка...';
@@ -129,9 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //--------------------------------------
       
       try {
-          const formData = new FormData(form);
-
-              
+                        
           const errors = validateForm(form);
           if (Object.keys(errors).length > 0) {
             showErrors(errors, form, messagesContainer);
@@ -139,9 +137,10 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.value = originalBtnText;
             return;
           }
+          const formData = new FormData(form);
 
-          const csrfToken = document.querySelector('input[name="csrf_token"]').value;
-          formData.append('csrf_token', csrfToken);
+        //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+        //   formData.append('csrf_token', csrfToken);
 
           const response = await fetch(form.action, {
               method: 'POST',
