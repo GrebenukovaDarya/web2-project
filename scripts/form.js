@@ -4,169 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const messagesContainer = document.querySelector('.error_messages');
   
-  form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const submitBtn = form.querySelector('#submit-btn');
-      const originalBtnText = submitBtn.value;
-      submitBtn.disabled = true;
-      submitBtn.value = 'Отправка...';
-      const errors = validateForm(form);
-      if (Object.keys(errors).length > 0) {
-        showErrors(errors, form, messagesContainer);
-        submitBtn.disabled = false;
-        submitBtn.value = originalBtnText;
-        return;
-      }
-    //   ----------------
-    //const fields = ['fio', 'number', 'email', 'birthdate', 'radio-group-1','biography', 'checkbox', 'languages'];
-    //let error_messages = [];
-    // let errors = FALSE; неправильная строка по синтаксису
-
-    // fields.forEach(field => {
-    //     const el=document.querySelector('[name="${field}"]');
-    //     if(!el || !el.value.trim()) {
-    //         errors = true;
-
-    //     }
-    // });
-    
-    // if(errors){
-    //     alert("ERRORS");
-    //     return;
-    // }
-
-//     const fio= document.querySelector
-//     if (empty($fio)) {
-//         setcookie('fio_error', '1');
-//         $error_messages['fio'] = 'Имя не указано';
-//         $errors = TRUE;
-//     } elseif (strlen($fio) > 128 ) {
-//         setcookie('fio_error', '2');
-//         $error_messages['fio'] = 'Имя не должно превышать 128 символов';
-//         $errors = TRUE;
-//     } elseif ( !preg_match('/^[a-zA-Zа-яА-ЯёЁ\s]+$/u', $fio)) {
-//         setcookie('fio_error', '3');
-//         $errors = TRUE;
-//         $error_messages['fio'] = 'Имя должно содержать только буквы и пробелы';
-//     }
-//     setcookie('fio_value', $fio, time() + 365 * 24 * 60 * 60);
-
-
-//   if (empty($num)) {
-//     setcookie('number_error', '1');
-//     $errors = TRUE;
-//     $error_messages['number'] = 'Номер не указан';
-//   } elseif (!preg_match('/^\+7\d{10}$/', $num)) {
-//     setcookie('number_error', '2');
-//     $errors = TRUE;
-//     $error_messages['number'] = 'Номер указан некорректно';
-//   }
-//   setcookie('number_value', $num, time() + 365 * 24 * 60 * 60);
-
-//   if (empty($email) ) {
-//     setcookie('email_error', '1');
-//     $errors = TRUE;
-//     $error_messages['email'] = 'Email не указан';
-//   } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-//     setcookie('email_error', '2');
-//     $error_messages['email'] = 'Email-error';
-//     $errors = TRUE;
-//   }
-//   setcookie('email_value', $email, time() + 365 * 24 * 60 * 60);
-
-//   if (empty($gen)){
-//     setcookie('gen_error', '1');
-//     $errors = TRUE;
-//     $error_messages['gen'] = 'Пол не указан';
-//   } else{
-//     $allowed_genders = ["male", "female"];
-//     if (!in_array($gen, $allowed_genders)) {
-//       setcookie('gen_error', '2');
-//       $errors = TRUE;
-//     }
-//   }
-//   setcookie('gen_value', $gen, time() + 365 * 24 * 60 * 60);
-
-//   if (empty($biography)) {
-//     setcookie('bio_error', '1');
-//     $errors = TRUE;
-//     $error_messages['bio'] = 'Биография не указана';
-//   } elseif(strlen($biography) > 512){
-//     setcookie('bio_error', '2');
-//     $errors = TRUE;
-//     $error_messages['bio'] = 'Биография не должна быть более 512 символов';
-//   } elseif(preg_match('/[<>{}\[\]]|<script|<\?php/i', $biography)){
-//     setcookie('bio_error', '3');
-//     $errors = TRUE;
-//     $error_messages['bio'] = 'Недопустимые символы в биографии';
-//   }
-//   setcookie('bio_value', $biography, time() + 365 * 24 * 60 * 60);
-
-//   if(empty($languages)) {
-//     setcookie('lang_error', '1');
-//     $errors = TRUE;
-//     $error_messages['lang'] = 'Выберите хотя бы 1 язык';
-//   } else {
-//     foreach ($languages as $lang) {
-//       if (!in_array($lang, $allowed_lang)) {
-//           setcookie('lang_error', '2');
-//           $errors = TRUE;
-//       }
-//     }
-//   }
-//   $langs_value =(implode(",", $languages));
-//   setcookie('lang_value', $langs_value, time() + 365 * 24 * 60 * 60);
-
-//   if(empty($bdate)) {
-//     setcookie('bdate_error', '1');
-//     $errors = TRUE;
-//     $error_messages['bdate'] = 'Укажите дату рождения';
-//   }
-//   setcookie('bdate_value', $bdate, time() + 365 * 24 * 60 * 60);
-
-//   if (!isset($_POST["checkbox"])) {
-//     setcookie('checkbox_error', '1');
-//     $errors = TRUE;
-//     $error_messages['checkbox'] = 'Ознакомьтесь с контрактом';
-//   }
-//   setcookie('checkbox_value', $_POST["checkbox"], time() + 365 * 24 * 60 * 60);
-
-  //--------------------------------------
-      
-      try {
-                        
-          
-          const formData = new FormData(form);
-
-        //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
-        //   formData.append('csrf_token', csrfToken);
-
-          const response = await fetch(form.action, {
-              method: 'POST',
-              headers: {
-                  'X-Requested-With': 'XMLHttpRequest'
-              },
-              body: formData
-          });
-          
-          const result = await response.json();
-          if (result.success) {
-            showSuccess(result, messagesContainer, form);
-          } else {
-            showErrors(result.errors || {}, form, messagesContainer);
-          }
-      } catch (error) {
-          messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
-          messagesContainer.style.display = 'block';
-      } finally {
-          submitBtn.disabled = false;
-          submitBtn.value = originalBtnText;
-      }
-  });
-
-
-// Функция валидации формы
+    // Функция валидации формы
 function validateForm(form) {
     const errors = {};
     const fio = form.querySelector('[name="fio"]')?.value.trim();
@@ -305,4 +143,53 @@ function validateForm(form) {
       form.reset();
     }
   }
+
+    
+    
+  form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const submitBtn = form.querySelector('#submit-btn');
+      const originalBtnText = submitBtn.value;
+      submitBtn.disabled = true;
+      submitBtn.value = 'Отправка...';
+      
+      
+      try {
+                        
+        const errors = validateForm(form);
+        if (Object.keys(errors).length > 0) {
+          showErrors(errors, form, messagesContainer);
+          submitBtn.disabled = false;
+          submitBtn.value = originalBtnText;
+          return;
+        }
+          const formData = new FormData(form);
+          console.log('Данные формы:', Object.fromEntries(formData.entries()));
+        //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+        //   formData.append('csrf_token', csrfToken);
+
+          const response = await fetch(form.action, {
+              method: 'POST',
+              headers: {
+                  'X-Requested-With': 'XMLHttpRequest'
+              },
+              body: formData
+          });
+          
+          const result = await response.json();
+          if (result.success) {
+            showSuccess(result, messagesContainer, form);
+          } else {
+            showErrors(result.errors || {}, form, messagesContainer);
+          }
+      } catch (error) {
+          messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
+          messagesContainer.style.display = 'block';
+      } finally {
+          submitBtn.disabled = false;
+          submitBtn.value = originalBtnText;
+      }
+  });
 });
+
