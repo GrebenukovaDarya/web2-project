@@ -17,12 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('csrf_token', csrfToken);
       }
 
+      const errors = validateForm();
+      if (Object.keys(errors).length > 0) {
+        showErrors(errors);
+        submitBtn.disabled = false;
+        submitBtn.value = originalBtnText;
+        return;
+      }
+
+
     //   ----------------
 
-    const fields = ['fio', 'number', 'email', 'birthdate', 'radio-group-1','biography', 'checkbox', 'languages'];
+    //const fields = ['fio', 'number', 'email', 'birthdate', 'radio-group-1','biography', 'checkbox', 'languages'];
 
 
-    let error_messages = [];
+    //let error_messages = [];
     // let errors = FALSE; неправильная строка по синтаксису
 
     // fields.forEach(field => {
@@ -138,8 +147,13 @@ document.addEventListener('DOMContentLoaded', function() {
       
       try {
           const formData = new FormData(form);
+
+          const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+          formData.append('csrf_token', csrfToken);
+
           const response = await fetch(form.action, {
               method: 'POST',
+              body: formData,
               headers: {
                   'X-Requested-With': 'XMLHttpRequest'
               },
@@ -147,39 +161,43 @@ document.addEventListener('DOMContentLoaded', function() {
           });
           
           const result = await response.json();
-          
-          // Очищаем предыдущие сообщения
-          messagesContainer.innerHTML = '';
-          messagesContainer.style.display = 'block';
-          
           if (result.success) {
-              // Показываем успешные сообщения
-              result.messages.forEach(message => {
-                  messagesContainer.innerHTML += `<div class="success">${message}</div>`;
-              });
-              
-              // Если есть данные логина/пароля
-              if (result.data && result.data.login && result.data.password) {
-                  messagesContainer.innerHTML += 
-                      `<div class="success">Ваш логин: ${result.data.login}<br>Ваш пароль: ${result.data.password}</div>`;
-              }
-              
-              // Очищаем ошибки валидации
-              document.querySelectorAll('.error').forEach(el => {
-                  el.classList.remove('error');
-              });
+            showSuccess(result);
           } else {
-              // Показываем ошибки
-              Object.entries(result.errors).forEach(([field, error]) => {
-                  messagesContainer.innerHTML += `<div class="error">${error}</div>`;
-                  
-                  // Подсвечиваем поле с ошибкой
-                  const fieldElement = form.querySelector(`[name="${field}"]`);
-                  if (fieldElement) {
-                      fieldElement.classList.add('error');
-                  }
-              });
+            showErrors(result.errors);
           }
+        //   // Очищаем предыдущие сообщения
+        //   messagesContainer.innerHTML = '';
+        //   messagesContainer.style.display = 'block';
+          
+        //   if (result.success) {
+        //       // Показываем успешные сообщения
+        //       result.messages.forEach(message => {
+        //           messagesContainer.innerHTML += `<div class="success">${message}</div>`;
+        //       });
+              
+        //       // Если есть данные логина/пароля
+        //       if (result.data && result.data.login && result.data.password) {
+        //           messagesContainer.innerHTML += 
+        //               `<div class="success">Ваш логин: ${result.data.login}<br>Ваш пароль: ${result.data.password}</div>`;
+        //       }
+              
+        //       // Очищаем ошибки валидации
+        //       document.querySelectorAll('.error').forEach(el => {
+        //           el.classList.remove('error');
+        //       });
+        //   } else {
+        //       // Показываем ошибки
+        //       Object.entries(result.errors).forEach(([field, error]) => {
+        //           messagesContainer.innerHTML += `<div class="error">${error}</div>`;
+                  
+        //           // Подсвечиваем поле с ошибкой
+        //           const fieldElement = form.querySelector(`[name="${field}"]`);
+        //           if (fieldElement) {
+        //               fieldElement.classList.add('error');
+        //           }
+        //       });
+        //   }
       } catch (error) {
           messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
           messagesContainer.style.display = 'block';
@@ -188,44 +206,123 @@ document.addEventListener('DOMContentLoaded', function() {
           submitBtn.value = originalBtnText;
       }
   });
-});
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     const form = document.getElementById('myform');
-//     if (!form) return;
+
+// Функция валидации формы
+function validateForm() {
+    const errors = {};
+    const fio = form.querySelector('[name="fio"]').value.trim();
+    const phone = form.querySelector('[name="phone"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const date = form.querySelector('[name="date"]').value;
+    const gender = form.querySelector('[name="gender"]:checked');
+    const languages = Array.from(form.querySelectorAll('[name="favorite_languages[]"]:checked')).map(el => el.value);
+    const biography = form.querySelector('[name="biography"]').value.trim();
+    const contract = form.querySelector('[name="contract"]').checked;
+    
+    // Проверка ФИО
+    if (!fio) {
+      errors.fio = 'Заполните имя';
+    } else if (fio.length > 150) {
+      errors.fio = 'Имя не должно превышать 150 символов';
+    } else if (!/^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(fio)) {
+      errors.fio = 'Имя должно содержать только буквы и пробелы';
+    }
+    
+    // Проверка телефона
+    if (!phone) {
+      errors.phone = 'Введите номер телефона';
+    } else if (!/^\+7\d{10}$/.test(phone)) {
+      errors.phone = 'Номер должен быть в формате +7XXXXXXXXXX';
+    }
+    
+    if (!email) {
+        errors.email = 'Введите email';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errors.email = 'Введите корректный email';
+    }
+    if (!date) {
+        errors.date = 'Выберите дату рождения';
+    } else {
+        const birthDate = new Date(date);
+        const minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 120); // 120 лет назад
+        const maxDate = new Date();
+        maxDate.setFullYear(maxDate.getFullYear() - 0); 
+        
+        if (birthDate < minDate) {
+            errors.date = 'Дата рождения не может быть раньше ' + minDate.toLocaleDateString();
+        } else if (birthDate > maxDate) {
+            errors.date = 'Вам должно быть больше 0 лет';
+        }
+    }
+    if (!gender) {
+        errors.gender = 'Выберите пол';
+    }
+    if (languages.length === 0) {
+        errors.favorite_languages = 'Выберите хотя бы один язык';
+    } else if (languages.length > 3) {
+        errors.favorite_languages = 'Можно выбрать не более 3 языков';
+    }
+    if (!biography) {
+        errors.biography = 'Заполните биографию';
+    } else if (biography.length > 512) {
+        errors.biography = 'Биография не должна превышать 512 символов';
+    } else if (/[<>{}[\]]|<\?php|<script/i.test(biography)) {
+        errors.biography = 'Биография содержит запрещенные символы';
+    }
+    if (!contract) {
+        errors.contract = 'Необходимо согласиться с условиями';
+    }
+    return errors;
+  }
   
+  // Показать ошибки
+  function showErrors(errors) {
+    messagesContainer.innerHTML = '';
+    messagesContainer.style.display = 'block';
+    
+    // Очищаем предыдущие ошибки
+    form.querySelectorAll('.error-field').forEach(el => {
+      el.classList.remove('error-field');
+    });
+    
+    // Добавляем новые ошибки
+    for (const [field, message] of Object.entries(errors)) {
+      const fieldElement = form.querySelector(`[name="${field}"]`);
+      if (fieldElement) {
+        fieldElement.classList.add('error-field');
+        const errorElement = document.createElement('div');
+        errorElement.className = 'error';
+        errorElement.textContent = message;
+        messagesContainer.appendChild(errorElement);
+      }
+    }
+  }
   
-//     form.addEventListener('submit', async function (e) {
-//       e.preventDefault();
-  
-//       const formData = new FormData(form);
-//       try {
-//         const response = await fetch(form.action, {
-//           method: 'POST',
-//           headers: {
-//             'X-Requested-With': 'XMLHttpRequest'
-//           },
-//           body: formData
-//         });
-  
-//         const result = await response.json();
-//         const msgDiv = document.getElementById('messages');
-//         msgDiv.innerHTML = '';
-  
-//         // Выводим сообщения
-//         if (result.success) {
-//           result.messages.forEach(message => {
-//               msgDiv.innerHTML += `<div class="success">${message}</div>`;
-//           });
-//           form.reset();
-//         } else {
-//             result.errors.forEach((error, key) => {
-//                 msgDiv.innerHTML += `<div class="error">Ошибка поля ${key}: ${error}</div>`;
-//             });
-//         }
-//         msgDiv.style.display = 'block'; 
-//       } catch (error) {
-//         alert('Ошибка при отправке: ' + error.message);
-//       }
-//     });
-//   });
+  // Показать успешное сообщение
+  function showSuccess(result) {
+    messagesContainer.innerHTML = '';
+    messagesContainer.style.display = 'block';
+    
+    result.messages.forEach(message => {
+      const msgElement = document.createElement('div');
+      msgElement.className = 'success';
+      msgElement.innerHTML = message;
+      messagesContainer.appendChild(msgElement);
+    });
+    
+    // Если есть данные логина/пароля
+    if (result.data && result.data.login) {
+      const loginMsg = document.createElement('div');
+      loginMsg.className = 'success';
+      loginMsg.innerHTML = `Вы можете <a href="login.php">войти</a> с логином: ${result.data.login} и паролем: ${result.data.password}`;
+      messagesContainer.appendChild(loginMsg);
+    }
+    
+    // Очищаем форму если это не редактирование
+    if (!form.querySelector('[name="uid"]')) {
+      form.reset();
+    }
+  }
+});
