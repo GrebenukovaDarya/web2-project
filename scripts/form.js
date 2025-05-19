@@ -151,7 +151,7 @@ function validateForm(form) {
     if (result.data?.login && result.data?.password) {
       const loginMsg = document.createElement('div');
       loginMsg.className = 'success';
-      loginMsg.innerHTML = `Вы можете войти с логином:  и паролем: `;
+      loginMsg.innerHTML = `Вы можете войти с логином: ${result.data.login} и паролем: ${result.data.password}`;
       container.appendChild(loginMsg);
     }
     
@@ -187,6 +187,7 @@ function validateForm(form) {
         //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
         //   formData.append('csrf_token', csrfToken);
 
+
           const response = await fetch(form.action, {
               method: 'POST',
               headers: {
@@ -195,12 +196,13 @@ function validateForm(form) {
               body: formData
           });
           
+          /*
           const result = await response.json();
           if (result.success) {
             showSuccess(result, messagesContainer, form);
           } else {
             showErrors(result.errors || {}, form, messagesContainer);
-          }
+          }*/
       } catch (error) {
           messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
           messagesContainer.style.display = 'block';

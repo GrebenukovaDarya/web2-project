@@ -374,6 +374,17 @@ function front_post($request, $db) {
         print('Error : ' . $e->getMessage());
         exit();
       }
+
+      if ($isAjax) {
+              echo json_encode([
+                'success' => true,
+                'message' => 'Новый пользователь создан',
+                'login' => $login,
+                'password' => $password,
+              ]);
+              exit;
+          }
+
       $messages[] = 'Пользователь успешно создан';
       $response_data = [
         'login' => $login,
