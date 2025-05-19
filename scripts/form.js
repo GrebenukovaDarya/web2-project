@@ -197,12 +197,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: formData
             });
-            
+            /*
             console.log("check", response.headers.get('content-type'));
             console.log(await response.text());
-            
-            const result = await response.json();
 
+            const result = await response.json();
+*/
+
+
+            const response = await fetch('process_data.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: `someValue=${valueToSend}`
+            });
             
 
             if (result.success) {
