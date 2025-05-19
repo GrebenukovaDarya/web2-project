@@ -2,6 +2,7 @@
 require_once './scripts/db.php';
 global $db;
 
+
 function login_get($request, $db) {
     
   if (!empty($_SESSION['login'])) {

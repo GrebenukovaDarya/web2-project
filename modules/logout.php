@@ -5,6 +5,7 @@ global $db;
        if (isset($request['post']['logout'])) {
            session_unset();
            session_destroy();
+           //
            return redirect('login');
        }
    }
