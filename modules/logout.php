@@ -4,7 +4,8 @@ global $db;
    function logout_post($request, $db) {
 
        if (isset($request['post']['logout'])) {
-        echo "wiebnwoe woegw";
+           session_start();
+           
            session_unset();
            session_destroy();
            //
