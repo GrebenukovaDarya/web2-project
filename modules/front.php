@@ -131,10 +131,10 @@ function front_get($request, $db) {
     }
   }
   if (isset($_COOKIE[session_name()]) && session_start() &&!empty($_SESSION['login'])) { 
-    $_SESSION['uid']=getUID($_SESSION['login']);
+    $_SESSION['uid'] = getUID($_SESSION['login']);
 
-    $values=INSERTData($_SESSION['login']);
-    $login_message='Вход с логином: '. $_SESSION['login'] . ", uid: ". $_SESSION['uid'];
+    $values = INSERTData($_SESSION['login']);
+    $login_message = 'Вход с логином: '. $_SESSION['login'] . ", uid: ". $_SESSION['uid'];
     $messages[] = $login_message;
   }
 
