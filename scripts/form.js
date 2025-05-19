@@ -189,21 +189,21 @@ document.addEventListener('DOMContentLoaded', function() {
           //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
           //   formData.append('csrf_token', csrfToken);
   
-  /*
+  
             const response = await fetch(form.action, {
                 method: 'POST',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
                 },
                 body: formData
-            });*/
+            });
             /*
             console.log("check", response.headers.get('content-type'));
             console.log(await response.text());
 
             const result = await response.json();
 */
-
+/*
 
             const response = await fetch('process_data.php', {
               method: 'POST',
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
               },
               body: `someValue=${valueToSend}`
             });
-            
+            */
 
             if (result.success) {
               showSuccess(result, messagesContainer, form);
