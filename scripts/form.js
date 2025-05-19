@@ -143,7 +143,14 @@ function validateForm(form) {
       form.reset();
     }
   }
-
+ function generateRandomString(length = 8) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  }
     
     
   form.addEventListener('submit', async function(e) {
@@ -163,6 +170,13 @@ function validateForm(form) {
 
           const formData = new FormData(form);
           console.log('Данные формы:', Object.fromEntries(formData.entries()));
+          const data = {};
+          for(const [key, value] of formData.entries()) {
+                data[key] = value;
+          }
+          const Jstr=JSON.stringify(formData);
+          console.log(Jstr);
+          
         //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
         //   formData.append('csrf_token', csrfToken);
 
@@ -172,7 +186,7 @@ function validateForm(form) {
                   'X-Requested-With': 'XMLHttpRequest',
                   'Accept': 'application/json'
               },
-              body: JSON.stringify(formData)
+              body: Jstr
           });
             const contentType = response.headers.get('content-type');
             if (!contentType || !contentType.includes('application/json')) {
