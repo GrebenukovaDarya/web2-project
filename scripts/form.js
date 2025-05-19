@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             
             console.log("check", response.headers.get('content-type'));
-            console.log(await response.text());
+            //console.log(await response.text());
             
             const result = await response.json();
 
