@@ -40,7 +40,7 @@ function login_post($request, $db) {
     $_SESSION['uid'] = getUID([$_SESSION['login']]);
   
     
-    return redirect();
+    return redirect('');
     } else {
         return 'Неверный логин или пароль';
     }
