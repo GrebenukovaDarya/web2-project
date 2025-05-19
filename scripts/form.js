@@ -135,10 +135,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Функция отображения успеха
-    function showSuccess(result, container, form) {
+    function showSuccess(/*result, */container, form) {
       container.innerHTML = '';
       container.style.display = 'block';
       
+      /*
       if (result.messages && Array.isArray(result.messages)) {
         result.messages.forEach(message => {
           const msgElement = document.createElement('div');
@@ -146,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
           msgElement.innerHTML = message;
           container.appendChild(msgElement);
         });
-      }
+      }*/
       
       if (response.login && response.password) {
         console.log("message test");
@@ -155,10 +156,10 @@ document.addEventListener('DOMContentLoaded', function() {
         loginMsg.innerHTML = 'Вы можете войти с логином: ${response.login} и паролем: ${response.password}';
         container.appendChild(loginMsg);
       }
-      
+      /*
       if (!form.querySelector('[name="uid"]')) {
         form.reset();
-      }
+      }*/
     }
   
       
