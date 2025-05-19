@@ -198,14 +198,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: formData
             });
             
-            /*
+            
             const result = await response.json();
+            /*
             if (result.success) {
               showSuccess(result, messagesContainer, form);
             } else {
               showErrors(result.errors || {}, form, messagesContainer);
             }*/
-            showSuccess(/*result,*/ messagesContainer, form);
+            showSuccess(result, messagesContainer, form);
         } catch (error) {
             messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
             messagesContainer.style.display = 'block';
