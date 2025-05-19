@@ -180,6 +180,7 @@ function validateForm(form) {
             showSuccess(result, messagesContainer, form);
             console.log('test 3');
           } else {
+            console.log('test errors ');
             showErrors(result.errors || {}, form, messagesContainer);
           }
           console.log('test fin');
