@@ -16,32 +16,42 @@ function validateForm(form) {
     const biography = form.querySelector('[name="biography"]')?.value.trim();
     const contract = form.querySelector('[name="checkbox"]')?.checked;
 
+    errors.proverka = true;
+
     // Проверка ФИО
     if (!fio) {
       errors.fio = 'Заполните имя, пожалуйста';
+      errors.proverka = false;
     } else if (fio.length > 150) {
       errors.fio = 'Имя не должно превышать 150 символов';
+      errors.proverka = false;
     } else if (!/^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(fio)) {
       errors.fio = 'Имя должно содержать только буквы и пробелы';
+      errors.proverka = false;
     }
     
     // Проверка телефона
     if (!phone) {
       errors.number = 'Введите номер телефона';
+      errors.proverka = false;
     } else if (!/^\+7\d{10}$/.test(phone)) {
       errors.number = 'Номер должен быть в формате +7XXXXXXXXXX';
+      errors.proverka = false;
     }
     
     // Проверка email
     if (!email) {
       errors.email = 'Введите email';
+      errors.proverka = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errors.email = 'Введите корректный email';
+      errors.proverka = false;
     }
     
     // Проверка даты рождения
     if (!date) {
       errors.birthdate = 'Выберите дату рождения';
+      errors.proverka = false;
     } else {
       const birthDate = new Date(date);
       const minDate = new Date();
@@ -51,35 +61,41 @@ function validateForm(form) {
       
       if (birthDate < minDate) {
         errors.birthdate = 'Дата рождения не может быть раньше ' + minDate.toLocaleDateString();
+        errors.proverka = false;
       } else if (birthDate > maxDate) {
         errors.birthdate = 'Вам должно быть больше 0 лет';
+        errors.proverka = false;
       }
     }
     
     // Проверка пола
     if (!gender) {
       errors['radio-group-1'] = 'Выберите пол';
+      errors.proverka = false;
     }
     
     // Проверка языков
     if (languages.length === 0) {
       errors.languages = 'Выберите хотя бы один язык';
-    } else if (languages.length > 3) {
-      errors.languages = 'Можно выбрать не более 3 языков';
+      errors.proverka = false;
     }
     
     // Проверка биографии
     if (!biography) {
       errors.biography = 'Заполните биографию';
+      errors.proverka = false;
     } else if (biography.length > 512) {
       errors.biography = 'Биография не должна превышать 512 символов';
+      errors.proverka = false;
     } else if (/[<>{}[\]]|<\?php|<script/i.test(biography)) {
       errors.biography = 'Биография содержит запрещенные символы';
+      errors.proverka = false;
     }
     
     // Проверка согласия
     if (!contract) {
       errors.checkbox = 'Необходимо согласиться с условиями';
+      errors.proverka = false;
     }
     
     return errors;
@@ -158,12 +174,14 @@ function validateForm(form) {
       try {
                         
         const errors = validateForm(form);
-        if (Object.values(errors).length > 0) {
+        if (errors.proverka == false) {
+            console.log('валидация!');
           showErrors(errors, form, messagesContainer);
           submitBtn.disabled = false;
           submitBtn.value = originalBtnText;
           return;
         }
+        console.log('НЕ валидация!');
           const formData = new FormData(form);
           console.log('Данные формы:', Object.fromEntries(formData.entries()));
         //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
