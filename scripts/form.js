@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Функция отображения успеха
-    function showSuccess(result, response, container, form) {
+    function showSuccess(result, container, form) {
       container.innerHTML = '';
       container.style.display = 'block';
       
@@ -149,11 +149,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }*/
       
-      if (response.login && response.password) {
+      if (result.login && result.password) {
         console.log("message test");
         const loginMsg = document.createElement('div');
         loginMsg.className = 'success';
-        loginMsg.innerHTML = 'Вы можете войти с логином: ${response.login} и паролем: ${response.password}';
+        loginMsg.innerHTML = 'Вы можете войти с логином: ${result.login} и паролем: ${result.password}';
         container.appendChild(loginMsg);
       }
       /*
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.json();
 
             if (result.success) {
-              showSuccess(result, response, messagesContainer, form);
+              showSuccess(result, messagesContainer, form);
             } else {
               showErrors(result.errors || {}, form, messagesContainer);
             }
