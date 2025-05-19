@@ -130,7 +130,8 @@ function front_get($request, $db) {
       $values['uid']=$update_id;
     }
   }
-  if (isset($_COOKIE[session_name()]) && session_start() &&!empty($_SESSION['login'])) { 
+
+  if (isset($_COOKIE[session_name()]) && session_start() && !empty($_SESSION['login'])) { 
     $_SESSION['uid'] = getUID($_SESSION['login']);
 
     $values = INSERTData($_SESSION['login']);
