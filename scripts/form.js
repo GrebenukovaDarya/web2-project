@@ -151,7 +151,7 @@ function validateForm(form) {
     if (result.data?.login && result.data?.password) {
       const loginMsg = document.createElement('div');
       loginMsg.className = 'success';
-      loginMsg.innerHTML = `Вы можете войти с логином: ${result.data.login} и паролем: ${result.data.password}`;
+      loginMsg.innerHTML = `Вы можете войти с логином:  и паролем: `;
       container.appendChild(loginMsg);
     }
     
