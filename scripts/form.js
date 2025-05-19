@@ -158,12 +158,10 @@ function validateForm(form) {
       try {
                         
         const errors = validateForm(form);
-        if (Object.keys(errors).length > 0) {
+       
           showErrors(errors, form, messagesContainer);
-          submitBtn.disabled = false;
-          submitBtn.value = originalBtnText;
-          return;
-        }
+          
+        
           const formData = new FormData(form);
           console.log('Данные формы:', Object.fromEntries(formData.entries()));
         //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
@@ -172,7 +170,9 @@ function validateForm(form) {
           const response = await fetch(form.action, {
               method: 'POST',
               headers: {
-                  'X-Requested-With': 'XMLHttpRequest'
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
               },
               body: formData
           });
