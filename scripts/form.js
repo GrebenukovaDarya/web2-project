@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Функция отображения успеха
-    function showSuccess(response, container, form) {
+    function showSuccess(result, response, container, form) {
       container.innerHTML = '';
       container.style.display = 'block';
       
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.json();
 
             if (result.success) {
-              showSuccess(result, messagesContainer, form);
+              showSuccess(result, response, messagesContainer, form);
             } else {
               showErrors(result.errors || {}, form, messagesContainer);
             }
