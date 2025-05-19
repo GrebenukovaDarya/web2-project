@@ -169,14 +169,20 @@ function validateForm(form) {
           const response = await fetch(form.action, {
               method: 'POST',
               headers: {
-                  'X-Requested-With': 'XMLHttpRequest'
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'Accept': 'application/json'
               },
               body: formData
           });
-
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text();
+                throw new Error(`Ожидался JSON, но получен: ${contentType}. Ответ: ${text.substring(0, 100)}...`);
+            }
           console.log('before json response');
           const result = await response.json();
-            console.log('after json response');
+          console.log('Ответ сервера:', result);
+          console.log('after json response');
 
           if (result.success) {
             console.log('test 2');
@@ -187,7 +193,8 @@ function validateForm(form) {
             showErrors(result.errors || {}, form, messagesContainer);
           }
           console.log('test fin');
-          messagesContainer.innerHTML = `<div class="error">TEST Ошибка при отправке формы: ${error.message}</div>`;
+          //messagesContainer.innerHTML = `<div class="error">TEST Ошибка при отправке формы: ${error.message}</div>`;
+          
       } catch (error) {
           messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
           messagesContainer.style.display = 'block';
