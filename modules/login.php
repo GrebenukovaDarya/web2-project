@@ -8,12 +8,6 @@ function login_get($request, $db) {
     return redirect('./');
 }
 
-  if(isset($request['post']['logout'])){
-    session_unset();
-    session_destroy();
-    return redirect('login');
-    exit();
-  }
     
     $csrf_token = htmlspecialchars(generateCsrfToken());
     $data = [
@@ -28,12 +22,20 @@ function login_get($request, $db) {
 
 function login_post($request, $db) {
 
+  if(isset($request['post']['logout'])){
+    session_unset();
+    session_destroy();
+    return redirect('login');
+    exit();
+  }
+  
   /*
     if (!validateCsrfToken()) {
         http_response_code(403);
         die('csrf error');
       }
   */
+
       $login = $request['post']['login'];
       $password = $request['post']['password'];
   
