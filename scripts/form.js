@@ -204,13 +204,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const result = await response.json();
 
-            /*
-
             if (result.success) {
               showSuccess(result, messagesContainer, form);
             } else {
               showErrors(result.errors || {}, form, messagesContainer);
-            }*/
+            }
 
             //showSuccess(result, messagesContainer, form);
         } catch (error) {
