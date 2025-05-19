@@ -172,7 +172,7 @@ function validateForm(form) {
                   'X-Requested-With': 'XMLHttpRequest',
                   'Accept': 'application/json'
               },
-              body: formData
+              body: JSON.stringify(formData)
           });
             const contentType = response.headers.get('content-type');
             if (!contentType || !contentType.includes('application/json')) {
