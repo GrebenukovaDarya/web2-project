@@ -198,11 +198,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: formData
             });
             
-            
-            const result = await response.json();
-            
             console.log("check", response.headers.get('content-type'));
             console.log(await response.text());
+            
+            const result = await response.json();
+
+            
 
             if (result.success) {
               showSuccess(result, messagesContainer, form);
