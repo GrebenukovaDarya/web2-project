@@ -174,9 +174,9 @@ function validateForm(form) {
           for(const [key, value] of formData.entries()) {
                 data[key] = value;
           }
-          const Jstr=JSON.stringify(formData);
+          const Jstr=JSON.stringify(data);
           console.log(Jstr);
-          
+
         //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
         //   formData.append('csrf_token', csrfToken);
 
