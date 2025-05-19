@@ -148,10 +148,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
       
-      if (result.data?.login && result.data?.password) {
+      if (response.login && response.password) {
         const loginMsg = document.createElement('div');
         loginMsg.className = 'success';
-        loginMsg.innerHTML = `Вы можете войти с логином: ${result.data.login} и паролем: ${result.data.password}`;
+        loginMsg.innerHTML = 'Вы можете войти с логином: ${response.login} и паролем: ${response.password}';
         container.appendChild(loginMsg);
       }
       
@@ -212,4 +212,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
   });
-  
