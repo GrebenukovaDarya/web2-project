@@ -1006,7 +1006,11 @@
           
           </form>
 
-          <?php                                     
+          <?php 
+          
+          require_once './scripts/db.php';
+                    global $db;
+                    
             if(!isset($_COOKIE[session_name()]) || empty($_SESSION['login'])){
               print('<a href="' . url('login') . '">Войти</a>');
             }
@@ -1015,7 +1019,7 @@
               print('<form class="logout_form" action="' . url('logout') . '" method="POST">
                   <input id="logoutButton" type="submit" name="logout" value="Выйти"/>
               </form>');
-            }
+          }
           ?>
 
         </div>
