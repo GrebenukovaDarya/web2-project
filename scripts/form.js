@@ -149,13 +149,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }*/
       
-      if (result.login && result.password) {
-        console.log("message test");
-        const loginMsg = document.createElement('div');
-        loginMsg.className = 'success';
-        loginMsg.innerHTML = 'Вы можете войти с логином: ${result.login} и паролем: ${result.password}';
-        container.appendChild(loginMsg);
-      }
+        if (result.login && result.password) {
+          console.log(result.login);
+          console.log(result.password);
+          const loginMsg = document.createElement('div');
+          loginMsg.className = 'success';
+          loginMsg.innerHTML = `Вы можете войти с логином: ${result.login} и паролем: ${result.password}`;
+          container.appendChild(loginMsg);
+        }
       /*
       if (!form.querySelector('[name="uid"]')) {
         form.reset();
@@ -207,15 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(result);
 
             if (result.success) {
-              //showSuccess(result, messagesContainer, form);
-              if (result.login && result.password) {
-                console.log(result.login);
-                console.log(result.password);
-                const loginMsg = document.createElement('div');
-                loginMsg.className = 'success';
-                loginMsg.innerHTML = `Вы можете войти с логином: ${result.login} и паролем: ${result.password}`;
-                container.appendChild(loginMsg);
-              }
+              showSuccess(result, messagesContainer, form);
+              
             } else {
               showErrors(result.errors || {}, form, messagesContainer);
             }
