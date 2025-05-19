@@ -25,10 +25,10 @@ function login_post($request, $db) {
   if(isset($request['post']['logout'])){
     session_unset();
     session_destroy();
-    return redirect('login');
     exit();
+    return redirect('login');
   }
-  
+
   /*
     if (!validateCsrfToken()) {
         http_response_code(403);
