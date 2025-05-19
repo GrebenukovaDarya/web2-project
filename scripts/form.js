@@ -4,21 +4,21 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const messagesContainer = document.querySelector('.error_messages');
   
-    // Функция валидации формы
-function validateForm(form) {
+// Функция валидации формы
+function validateForm() {
     const errors = {};
-    const fio = form.querySelector('[name="fio"]')?.value.trim();
-    const phone = form.querySelector('[name="number"]')?.value.trim();
-    const email = form.querySelector('[name="email"]')?.value.trim();
-    const date = form.querySelector('[name="birthdate"]')?.value;
+    const fio = form.querySelector('[name="fio"]').value.trim();
+    const phone = form.querySelector('[name="number"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const date = form.querySelector('[name="birthdate"]').value;
     const gender = form.querySelector('[name="radio-group-1"]:checked');
     const languages = Array.from(form.querySelectorAll('[name="languages[]"]:checked')).map(el => el.value);
-    const biography = form.querySelector('[name="biography"]')?.value.trim();
-    const contract = form.querySelector('[name="checkbox"]')?.checked;
-
+    const biography = form.querySelector('[name="biography"]').value.trim();
+    const contract = form.querySelector('[name="checkbox"]').checked;
+    
     // Проверка ФИО
     if (!fio) {
-      errors.fio = 'Заполните имя, пожалуйста';
+      errors.fio = 'Заполните имя';
     } else if (fio.length > 150) {
       errors.fio = 'Имя не должно превышать 150 символов';
     } else if (!/^[a-zA-Zа-яА-ЯёЁ\s]+$/u.test(fio)) {
@@ -27,132 +27,100 @@ function validateForm(form) {
     
     // Проверка телефона
     if (!phone) {
-      errors.number = 'Введите номер телефона';
+      errors.phone = 'Введите номер телефона';
     } else if (!/^\+7\d{10}$/.test(phone)) {
-      errors.number = 'Номер должен быть в формате +7XXXXXXXXXX';
+      errors.phone = 'Номер должен быть в формате +7XXXXXXXXXX';
     }
     
-    // Проверка email
     if (!email) {
-      errors.email = 'Введите email';
+        errors.email = 'Введите email';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errors.email = 'Введите корректный email';
+        errors.email = 'Введите корректный email';
     }
-    
-    // Проверка даты рождения
     if (!date) {
-      errors.birthdate = 'Выберите дату рождения';
+        errors.date = 'Выберите дату рождения';
     } else {
-      const birthDate = new Date(date);
-      const minDate = new Date();
-      minDate.setFullYear(minDate.getFullYear() - 120);
-      const maxDate = new Date();
-      maxDate.setFullYear(maxDate.getFullYear() - 0);
-      
-      if (birthDate < minDate) {
-        errors.birthdate = 'Дата рождения не может быть раньше ' + minDate.toLocaleDateString();
-      } else if (birthDate > maxDate) {
-        errors.birthdate = 'Вам должно быть больше 0 лет';
-      }
+        const birthDate = new Date(date);
+        const minDate = new Date();
+        minDate.setFullYear(minDate.getFullYear() - 120); // 120 лет назад
+        const maxDate = new Date();
+        maxDate.setFullYear(maxDate.getFullYear() - 0); 
+        
+        if (birthDate < minDate) {
+            errors.date = 'Дата рождения не может быть раньше ' + minDate.toLocaleDateString();
+        } else if (birthDate > maxDate) {
+            errors.date = 'Вам должно быть больше 0 лет';
+        }
     }
-    
-    // Проверка пола
     if (!gender) {
-      errors['radio-group-1'] = 'Выберите пол';
+        errors.gender = 'Выберите пол';
     }
-    
-    // Проверка языков
     if (languages.length === 0) {
-      errors.languages = 'Выберите хотя бы один язык';
+        errors.favorite_languages = 'Выберите хотя бы один язык';
     } else if (languages.length > 3) {
-      errors.languages = 'Можно выбрать не более 3 языков';
+        errors.favorite_languages = 'Можно выбрать не более 3 языков';
     }
-    
-    // Проверка биографии
     if (!biography) {
-      errors.biography = 'Заполните биографию';
+        errors.biography = 'Заполните биографию';
     } else if (biography.length > 512) {
-      errors.biography = 'Биография не должна превышать 512 символов';
+        errors.biography = 'Биография не должна превышать 512 символов';
     } else if (/[<>{}[\]]|<\?php|<script/i.test(biography)) {
-      errors.biography = 'Биография содержит запрещенные символы';
+        errors.biography = 'Биография содержит запрещенные символы';
     }
-    
-    // Проверка согласия
     if (!contract) {
-      errors.checkbox = 'Необходимо согласиться с условиями';
+        errors.contract = 'Необходимо согласиться с условиями';
     }
-    
     return errors;
   }
   
-  // Функция отображения ошибок
-  function showErrors(errors, form, container) {
-    container.innerHTML = '';
-    container.style.display = 'block';
+  // Показать ошибки
+  function showErrors(errors) {
+    messagesContainer.innerHTML = '';
+    messagesContainer.style.display = 'block';
     
-    // Очистка предыдущих ошибок
+    // Очищаем предыдущие ошибки
     form.querySelectorAll('.error-field').forEach(el => {
       el.classList.remove('error-field');
     });
     
-    // Добавление новых ошибок
+    // Добавляем новые ошибки
     for (const [field, message] of Object.entries(errors)) {
-      let fieldElement;
-      
-      // Специальная обработка для radio и checkbox
-      if (field === 'radio-group-1') {
-        fieldElement = form.querySelector(`[name="${field}"]`)?.closest('fieldset');
-      } else if (field === 'checkbox') {
-        fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
-      } else {
-        fieldElement = form.querySelector(`[name="${field}"]`);
-      }
-      
+      const fieldElement = form.querySelector(`[name="${field}"]`);
       if (fieldElement) {
         fieldElement.classList.add('error-field');
         const errorElement = document.createElement('div');
         errorElement.className = 'error';
         errorElement.textContent = message;
-        container.appendChild(errorElement);
+        messagesContainer.appendChild(errorElement);
       }
     }
   }
   
-  // Функция отображения успеха
-  function showSuccess(result, container, form) {
-    container.innerHTML = '';
-    container.style.display = 'block';
+  // Показать успешное сообщение
+  function showSuccess(result) {
+    messagesContainer.innerHTML = '';
+    messagesContainer.style.display = 'block';
     
-    if (result.messages && Array.isArray(result.messages)) {
-      result.messages.forEach(message => {
-        const msgElement = document.createElement('div');
-        msgElement.className = 'success';
-        msgElement.innerHTML = message;
-        container.appendChild(msgElement);
-      });
-    }
+    result.messages.forEach(message => {
+      const msgElement = document.createElement('div');
+      msgElement.className = 'success';
+      msgElement.innerHTML = message;
+      messagesContainer.appendChild(msgElement);
+    });
     
-    if (result.data?.login && result.data?.password) {
+    // Если есть данные логина/пароля
+    if (result.data && result.data.login) {
       const loginMsg = document.createElement('div');
       loginMsg.className = 'success';
-      loginMsg.innerHTML = 'Вы можете с логином: ${result.data.login} и паролем: ${result.data.password}';
-      container.appendChild(loginMsg);
+      loginMsg.innerHTML = `Вы можете <a href="login.php">войти</a> с логином: ${result.data.login} и паролем: ${result.data.password}`;
+      messagesContainer.appendChild(loginMsg);
     }
     
+    // Очищаем форму если это не редактирование
     if (!form.querySelector('[name="uid"]')) {
       form.reset();
     }
   }
- function generateRandomString(length = 8) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-  }
-    
-    
   form.addEventListener('submit', async function(e) {
       e.preventDefault();
       
@@ -160,56 +128,44 @@ function validateForm(form) {
       const originalBtnText = submitBtn.value;
       submitBtn.disabled = true;
       submitBtn.value = 'Отправка...';
-      
+
+      const csrfToken = document.querySelector('meta[name="csrf-token"]')?.textContent;
+      if(csrfToken){
+        formData.append('csrf_token', csrfToken);
+      }
+
+      const errors = validateForm();
+      if (Object.keys(errors).length > 0) {
+        showErrors(errors);
+        submitBtn.disabled = false;
+        submitBtn.value = originalBtnText;
+        return;
+      }
+
+
+    
       
       try {
-        console.log('Я тут был!');
-        const errors = validateForm(form);
-
-        showErrors(errors, form, messagesContainer);
-
           const formData = new FormData(form);
-          console.log('Данные формы:', Object.fromEntries(formData.entries()));
-          const data = {};
-          for(const [key, value] of formData.entries()) {
-                data[key] = value;
-          }
-          const Jstr=JSON.stringify(data);
-          console.log(Jstr);
 
-        //   const csrfToken = document.querySelector('input[name="csrf_token"]').value;
-        //   formData.append('csrf_token', csrfToken);
+          const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+          formData.append('csrf_token', csrfToken);
 
           const response = await fetch(form.action, {
               method: 'POST',
               headers: {
-                  'X-Requested-With': 'XMLHttpRequest',
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json'
+                  'X-Requested-With': 'XMLHttpRequest'
               },
-              body: Jstr
+              body: formData
           });
-            const contentType = response.headers.get('content-type');
-            if (!contentType || !contentType.includes('application/json')) {
-                const text = await response.text();
-                throw new Error(`Ожидался JSON, но получен: ${contentType}. Ответ: ${text.substring(0, 100)}...`);
-            }
-          console.log('before json response');
-          const result = await response.json();
-          console.log('Ответ сервера:', result);
-          console.log('after json response');
-
-          if (result.success) {
-            console.log('test 2');
-            showSuccess(result, messagesContainer, form);
-            console.log('test 3');
-          } else {
-            console.log('test errors ');
-            showErrors(result.errors || {}, form, messagesContainer);
-          }
-          console.log('test fin');
-          //messagesContainer.innerHTML = `<div class="error">TEST Ошибка при отправке формы: ${error.message}</div>`;
           
+          const result = await response.json();
+          if (result.success) {
+            showSuccess(result);
+          } else {
+            showErrors(result.errors);
+          }
+        
       } catch (error) {
           messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
           messagesContainer.style.display = 'block';
@@ -218,5 +174,6 @@ function validateForm(form) {
           submitBtn.value = originalBtnText;
       }
   });
-});
 
+
+});
