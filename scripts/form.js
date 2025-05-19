@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Функция отображения успеха
-    function showSuccess(result, container, form) {
+    function showSuccess(response, container, form) {
       container.innerHTML = '';
       container.style.display = 'block';
       
