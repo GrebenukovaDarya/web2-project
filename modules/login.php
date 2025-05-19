@@ -21,13 +21,13 @@ function login_get($request, $db) {
 
 
 function login_post($request, $db) {
-
+/*
   if(isset($request['post']['logout'])){
     session_unset();
     session_destroy();
     //exit();
     return redirect('login');
-  }
+  }*/
 
   /*
     if (!validateCsrfToken()) {

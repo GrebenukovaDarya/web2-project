@@ -1012,7 +1012,7 @@
             }
 
             if (isset($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
-              print('<form class="logout_form" action="' . url('login') . '" method="POST">
+              print('<form class="logout_form" action="' . url('logout') . '" method="POST">
                   <input id="logoutButton" type="submit" name="logout" value="Выйти"/>
               </form>');
             }
