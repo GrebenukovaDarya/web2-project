@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
       container.innerHTML = '';
       container.style.display = 'block';
       
-      /*
+      
       if (result.messages && Array.isArray(result.messages)) {
         result.messages.forEach(message => {
           const msgElement = document.createElement('div');
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
           msgElement.innerHTML = message;
           container.appendChild(msgElement);
         });
-      }*/
+      }
       
         if (result.login && result.password) {
           console.log(result.login);
@@ -157,10 +157,10 @@ document.addEventListener('DOMContentLoaded', function() {
           loginMsg.innerHTML = `Вы можете войти с логином: ${result.login} и паролем: ${result.password}`;
           container.appendChild(loginMsg);
         }
-      /*
+      
       if (!form.querySelector('[name="uid"]')) {
         form.reset();
-      }*/
+      }
     }
   
       
