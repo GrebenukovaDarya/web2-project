@@ -1009,8 +1009,8 @@
           <?php 
           
           require_once './scripts/db.php';
-                    global $db;
-                    
+          global $db;
+
             if(!isset($_COOKIE[session_name()]) || empty($_SESSION['login'])){
               print('<a href="' . url('login') . '">Войти</a>');
             }

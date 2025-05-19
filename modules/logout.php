@@ -8,7 +8,7 @@ global $db;
            session_unset();
            session_destroy();
            //
-           return redirect('login');
+           return redirect('');
            exit;
        }
    }
