@@ -21,11 +21,12 @@ function login_get($request, $db) {
 
 function login_post($request, $db) {
 
+  /*
     if (!validateCsrfToken()) {
         http_response_code(403);
         die('csrf error');
       }
-  
+  */
       $login = $request['post']['login'];
       $password = $request['post']['password'];
   
