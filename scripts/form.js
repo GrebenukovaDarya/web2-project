@@ -205,7 +205,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.json();
 
             if (result.success) {
-              showSuccess(result, messagesContainer, form);
+              //showSuccess(result, messagesContainer, form);
+              if (response.login && response.password) {
+                console.log(response.login);
+                console.log(response.password);
+                const loginMsg = document.createElement('div');
+                loginMsg.className = 'success';
+                loginMsg.innerHTML = `Вы можете войти с логином: ${response.login} и паролем: ${response.password}`;
+                container.appendChild(loginMsg);
+              }
             } else {
               showErrors(result.errors || {}, form, messagesContainer);
             }
