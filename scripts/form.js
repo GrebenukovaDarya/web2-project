@@ -173,8 +173,11 @@ function validateForm(form) {
               },
               body: formData
           });
-          
+
+          console.log('before json response');
           const result = await response.json();
+            console.log('after json response');
+
           if (result.success) {
             console.log('test 2');
             showSuccess(result, messagesContainer, form);
