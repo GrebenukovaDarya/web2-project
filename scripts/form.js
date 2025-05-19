@@ -135,7 +135,7 @@ function validateForm(form) {
     if (result.data?.login && result.data?.password) {
       const loginMsg = document.createElement('div');
       loginMsg.className = 'success';
-      loginMsg.innerHTML = `Вы можете с логином: ${result.data.login} и паролем: ${result.data.password}`;
+      loginMsg.innerHTML = 'Вы можете с логином: ${result.data.login} и паролем: ${result.data.password}';
       container.appendChild(loginMsg);
     }
     
@@ -176,11 +176,13 @@ function validateForm(form) {
           
           const result = await response.json();
           if (result.success) {
+            console.log('test 2');
             showSuccess(result, messagesContainer, form);
+            console.log('test 3');
           } else {
             showErrors(result.errors || {}, form, messagesContainer);
           }
-          console.log('test 2');
+          console.log('test fin');
           messagesContainer.innerHTML = `<div class="error">TEST Ошибка при отправке формы: ${error.message}</div>`;
       } catch (error) {
           messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
