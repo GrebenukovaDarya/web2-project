@@ -4,9 +4,16 @@ global $db;
 
 function login_get($request, $db) {
     
-    if (!empty($_SESSION['login'])) {
-        return redirect('./');
-    }
+  if (!empty($_SESSION['login'])) {
+    return redirect('./');
+}
+
+  if(isset($request['post']['logout'])){
+    session_unset();
+    session_destroy();
+    return redirect('login');
+    exit();
+  }
     
     $csrf_token = htmlspecialchars(generateCsrfToken());
     $data = [
