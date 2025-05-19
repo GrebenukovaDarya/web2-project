@@ -17,10 +17,10 @@
         Пароль <br/>
         <input name="password" />
       </label> <br/>
-
-      <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
       
       <input class="login_button" type="submit" value="Войти" />
+
+      <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
     </form>
 
     <a class="admin_ref" href="<?php echo url('admin'); ?>">Войти как администратор</a>

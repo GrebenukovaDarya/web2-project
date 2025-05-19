@@ -996,8 +996,9 @@
             С контрактом ознакомлен 
           </label> <br/>
 
+          
           <!--
-          <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCsrfToken()); ?>">
+          <input type="hidden" name="csrf_token" value="<?php /*echo htmlspecialchars(generateCsrfToken());*/ ?>">
             -->
 
 
