@@ -135,7 +135,7 @@ function validateForm(form) {
     if (result.data?.login && result.data?.password) {
       const loginMsg = document.createElement('div');
       loginMsg.className = 'success';
-      loginMsg.innerHTML = `Вы можете <a href="login.php">войти</a> с логином: ${result.data.login} и паролем: ${result.data.password}`;
+      loginMsg.innerHTML = `Вы можете с логином: ${result.data.login} и паролем: ${result.data.password}`;
       container.appendChild(loginMsg);
     }
     
