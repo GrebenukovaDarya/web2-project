@@ -180,6 +180,7 @@ function validateForm(form) {
           } else {
             showErrors(result.errors || {}, form, messagesContainer);
           }
+          console.log('test 2');
           messagesContainer.innerHTML = `<div class="error">TEST Ошибка при отправке формы: ${error.message}</div>`;
       } catch (error) {
           messagesContainer.innerHTML = `<div class="error">Ошибка при отправке формы: ${error.message}</div>`;
