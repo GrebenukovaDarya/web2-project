@@ -209,11 +209,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (result.success) {
               //showSuccess(result, messagesContainer, form);
               if (result.login && result.password) {
-                console.log(response.login);
-                console.log(response.password);
+                console.log(result.login);
+                console.log(result.password);
                 const loginMsg = document.createElement('div');
                 loginMsg.className = 'success';
-                loginMsg.innerHTML = `Вы можете войти с логином: ${response.login} и паролем: ${response.password}`;
+                loginMsg.innerHTML = `Вы можете войти с логином: ${result.login} и паролем: ${result.password}`;
                 container.appendChild(loginMsg);
               }
             } else {
