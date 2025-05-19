@@ -204,6 +204,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const result = await response.json();
 
+            console.log(result);
+
             if (result.success) {
               //showSuccess(result, messagesContainer, form);
               if (result.login && result.password) {
