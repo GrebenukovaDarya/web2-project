@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (result.success) {
               //showSuccess(result, messagesContainer, form);
-              if (response.login && response.password) {
+              if (result.login && result.password) {
                 console.log(response.login);
                 console.log(response.password);
                 const loginMsg = document.createElement('div');
