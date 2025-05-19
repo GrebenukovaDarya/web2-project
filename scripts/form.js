@@ -149,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       if (response.login && response.password) {
+        console.log("message test");
         const loginMsg = document.createElement('div');
         loginMsg.className = 'success';
         loginMsg.innerHTML = 'Вы можете войти с логином: ${response.login} и паролем: ${response.password}';
