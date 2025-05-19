@@ -184,6 +184,7 @@ function validateForm(form) {
               method: 'POST',
               headers: {
                   'X-Requested-With': 'XMLHttpRequest',
+                  'Content-Type': 'application/json',
                   'Accept': 'application/json'
               },
               body: Jstr
