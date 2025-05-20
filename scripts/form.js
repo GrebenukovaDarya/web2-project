@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
           fieldElement = form.querySelector(`[name="${field}"]`)?.closest('fieldset');
         } else if (field === 'checkbox') {
           fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
-        } else if (field === 'languages[]') {
-          fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
+        } else if (field === 'languages') {
+          fieldElement = form.querySelector(`[name="${field}[]"]`)?.closest('label');
         } else {
           fieldElement = form.querySelector(`[name="${field}"]`);
         }
