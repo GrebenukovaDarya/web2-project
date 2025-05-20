@@ -12,7 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const email = form.querySelector('[name="email"]')?.value.trim();
       const date = form.querySelector('[name="birthdate"]')?.value;
       const gender = form.querySelector('[name="radio-group-1"]:checked');
-      const languages = Array.from(form.querySelectorAll('[name="languages[]"]:checked')).map(el => el.value);
+      //const languages = Array.from(form.querySelectorAll('[name="languages[]"]:checked')).map(el => el.value);
+      
+      const languages = form.querySelector('[name="languages[]"]');
+      
       const biography = form.querySelector('[name="biography"]')?.value.trim();
       const contract = form.querySelector('[name="checkbox"]')?.checked;
   
@@ -75,10 +78,15 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Проверка языков
+      if (!languages.value) { 
+        errors.languages = 'Укажите хотя бы один язык';
+        errors.proverka = false;
+      }
+/*
       if (languages.length === 0) {
         errors.languages = 'Укажите хотя бы один язык';
         errors.proverka = false;
-       }
+       }*/
       
       // Проверка биографии
       if (!biography) {
