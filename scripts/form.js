@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const phone = form.querySelector('[name="number"]')?.value.trim();
       const email = form.querySelector('[name="email"]')?.value.trim();
       const date = form.querySelector('[name="birthdate"]')?.value;
+
       const gender = form.querySelector('[name="radio-group-1"]:checked');
+
+      //const gender = form.querySelector('[name="radio-group-1"]:checked');
       //const languages = Array.from(form.querySelectorAll('[name="languages[]"]:checked')).map(el => el.value);
       
       const languages = form.querySelector('[name="languages[]"]');
@@ -72,10 +75,15 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Проверка пола
+      /*
        if (!gender) {
          errors['radio-group-1'] = 'Укажите пол';
          errors.proverka = false;
-      }
+      }*/
+         if (!gender) {
+          errors['radio-group-1'] = 'Укажите пол';
+          errors.proverka = false;
+        }
       
       // Проверка языков
       if (!languages.value) { 
