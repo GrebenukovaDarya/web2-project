@@ -133,6 +133,9 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Добавление новых ошибок
       for (const [field, message] of Object.entries(errors)) {
+
+        console.log(field);
+
         let fieldElement;
         
         // Специальная обработка для radio и checkbox
