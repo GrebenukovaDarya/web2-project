@@ -328,10 +328,17 @@ function front_post($request, $db) {
     // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
   try{
 
+    $is_ajax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
+    if ($is_ajax) {
+      header('Content-Type: application/json');
+    }
   
   if (!empty($_SERVER['PHP_AUTH_USER']) && !empty($_SERVER['PHP_AUTH_PW']) &&
   admin_login_check($_SERVER['PHP_AUTH_USER']) && admin_password_check($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
   
+
     if(!empty($_POST['uid'])) {
       $user_id = $_POST['uid'];
       $languages = $_POST['languages'] ?? [];
