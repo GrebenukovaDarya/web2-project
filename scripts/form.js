@@ -85,9 +85,10 @@ document.addEventListener('DOMContentLoaded', function() {
           errors.proverka = false;
         }
       */
-     
+
       // Проверка языков
       if (!languages.value) { 
+        console.log("language validation");
         errors.languages = 'Укажите хотя бы один язык';
         errors.proverka = false;
       }
