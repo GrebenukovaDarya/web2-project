@@ -123,6 +123,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function showErrors(errors, form, container) {
       container.innerHTML = '';
       container.style.display = 'block';
+
+      console.log(errors);
       
       // Очистка предыдущих ошибок
       form.querySelectorAll('.error-field').forEach(el => {
@@ -151,6 +153,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
     }
+
+
     
     // Функция отображения успеха
     function showSuccess(result, container, form) {
