@@ -139,6 +139,14 @@ document.addEventListener('DOMContentLoaded', function() {
       container.innerHTML = '';
       container.style.display = 'block';
       
+      if (result.message) {
+          console.log(result.message);
+          const loginMsg = document.createElement('div');
+          loginMsg.className = 'succes-message';
+          loginMsg.innerHTML = `${result.message}`;
+          container.appendChild(loginMsg);
+        }
+        /*
       
       if (result.message && Array.isArray(result.message)) {
         result.message.forEach(mess => {
@@ -148,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
           container.appendChild(msgElement);
         });
       }
-      
+      */
         if (result.login && result.password) {
           console.log(result.login);
           console.log(result.password);
