@@ -147,6 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
           fieldElement = form.querySelector(`[name="${field}"]`);
         }
         
+        console.log("fieldElement: ", fieldElement);
+
         if (fieldElement) {
           fieldElement.classList.add('error-field');
           const errorElement = document.createElement('div');
