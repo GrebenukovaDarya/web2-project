@@ -69,16 +69,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Проверка пола
-      // if (!gender) {
-      //   errors['radio-group-1'] = 'Выберите пол';
-      //   errors.proverka = false;
-      // }
+       if (!gender) {
+         errors['radio-group-1'] = 'Укажите пол';
+         errors.proverka = false;
+      }
       
       // Проверка языков
-      // if (languages.length === 0) {
-      //   errors.languages = 'Выберите хотя бы один язык';
-      //   errors.proverka = false;
-      // }
+      if (languages.length === 0) {
+        errors.languages = 'Укажите хотя бы один язык';
+        errors.proverka = false;
+       }
       
       // Проверка биографии
       if (!biography) {
