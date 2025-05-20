@@ -1,38 +1,83 @@
+body {
+ background-color: #1e1e2f;
+ font-family: 'Segoe UI', sans-serif;
+ margin: 20px;
+ color: #fff;
+}
+
 table {
  width: 100%;
  border-collapse: collapse;
- margin: 30px 0;
- background-color: rgba(255, 255, 255, 0.03);
- box-shadow: 0 0 10px rgba(255, 69, 58, 0.1);
- border-radius: 8px;
+ margin-bottom: 40px;
+ background-color: #2c2c3e;
+ border-radius: 10px;
  overflow: hidden;
- color: #fff;
- font-size: 14px;
-}
-table thead tr {
- background-color: #1e1e2f;
- text-align: left;
- font-weight: bold;
+ box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-table thead td {
- padding: 12px;
- border-bottom: 1px solid #444;
- color: #ff3c38;
+thead tr {
+ background-color: #161625;
+}
+
+thead td {
+ padding: 14px;
+ font-weight: bold;
+ color: #ff4b5c;
+ text-align: center;
  text-transform: uppercase;
  font-size: 13px;
 }
 
-table tbody td {
+tbody td {
  padding: 12px;
- border-bottom: 1px solid #333;
- color: #eee;
+ text-align: center;
+ color: #e0e0e0;
+ border-top: 1px solid #444;
+ font-size: 14px;
 }
 
-table tbody tr:nth-child(even) {
- background-color: rgba(255, 255, 255, 0.02);
+tbody tr:nth-child(even) {
+ background-color: #26263a;
 }
 
-table tbody tr:hover {
- background-color: rgba(255, 60, 56, 0.1);
+tbody tr:hover {
+ background-color: #3a3a56;
+}
+
+.delete_button {
+ background-color: #ff4b5c;
+ color: white;
+ border: none;
+ padding: 6px 14px;
+ border-radius: 6px;
+ cursor: pointer;
+ font-size: 13px;
+ transition: background-color 0.3s ease;
+}
+
+.delete_button:hover {
+ background-color: #e03d4f;
+}
+
+.change_button a {
+ display: inline-block;
+ background-color: #4b8bff;
+ color: white;
+ padding: 6px 14px;
+ border-radius: 6px;
+ text-decoration: none;
+ font-size: 13px;
+ margin-top: 6px;
+ transition: background-color 0.3s ease;
+}
+
+.change_button a:hover {
+ background-color: #3974d9;
+}
+
+.buttons {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 4px;
 }
