@@ -75,16 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Проверка пола
-      /*
+      
        if (!gender) {
          errors['radio-group-1'] = 'Укажите пол';
          errors.proverka = false;
       }
-         if (!gender) {
-          errors['radio-group-1'] = 'Укажите пол';
-          errors.proverka = false;
-        }
-      */
 
       // Проверка языков
       if (!languages.value) { 
@@ -142,6 +137,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (field === 'radio-group-1') {
           fieldElement = form.querySelector(`[name="${field}"]`)?.closest('fieldset');
         } else if (field === 'checkbox') {
+          fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
+        } else if (field === 'languages[]') {
           fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
         } else {
           fieldElement = form.querySelector(`[name="${field}"]`);
