@@ -148,11 +148,11 @@ function users_table(){
           $r.="<td class=\"buttons\">
           <form action=\"\" method=\"POST\">
           <input type=\"hidden\" name=\"del_by_uid\" value=\"$uid\">
-          <input class=\"delete_button\" type=\"submit\" value=\"удалить\">
+          <input class=\"delete_button\" type=\"submit\" value=\"УДАЛИТЬ\">
           </form>";
 
           $r.="<br><div class=\"change_button\">
-          <a href=\"index.php?uid=$row->id\">Изменить</a>
+          <a href=\"index.php?uid=$row->id\">ИЗМЕНИТЬ</a>
           </div></td></tr>";
 
           $rows[]=$r;
