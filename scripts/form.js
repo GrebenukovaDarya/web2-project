@@ -140,11 +140,11 @@ document.addEventListener('DOMContentLoaded', function() {
       container.style.display = 'block';
       
       
-      if (result.messages && Array.isArray(result.messages)) {
-        result.messages.forEach(message => {
+      if (result.message && Array.isArray(result.message)) {
+        result.message.forEach(mess => {
           const msgElement = document.createElement('div');
           msgElement.className = 'success';
-          msgElement.innerHTML = message;
+          msgElement.innerHTML = mess;
           container.appendChild(msgElement);
         });
       }
