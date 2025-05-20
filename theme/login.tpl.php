@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"  href="./styles/style.css">
-    <title> login </title>
+    <link rel="stylesheet"  href="./styles/login.css">
+    <title>Вход в систему</title>
   </head>
   <body>
-
+  <h1>Вход в систему</h1>
     <form class="login_form" action="<?php echo url('login'); ?>" method="post">
       <label> 
         Логин <br/>
