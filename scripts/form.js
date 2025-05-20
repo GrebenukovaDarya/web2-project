@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
       // Проверка ФИО
       if (!fio) {
-        errors.fio = 'Заполните имя, пожалуйста(!!!!!)';
+        errors.fio = 'Заполните имя, пожалуйста';
         errors.proverka = false;
       } else if (fio.length > 150) {
         errors.fio = 'Имя не должно превышать 150 символов';
