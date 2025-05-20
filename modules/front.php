@@ -343,8 +343,16 @@ function front_post($request, $db) {
       $user_id = $_POST['uid'];
       $languages = $_POST['languages'] ?? [];
       UPDATE($user_id, $_POST['fio'], $_POST['number'], $_POST['email'], $_POST['birthdate'], $_POST['radio-group-1'], $_POST['biography'], isset($_POST["checkbox"]) ? 1 : 0, $languages);
-      header('Location: admin.php');
+      //header('Location: admin.php');
       
+      if ($is_ajax) {
+        echo json_encode([
+          'success' => true,
+          'message' => 'Успешное изменение',
+        ]);
+        exit;
+      }
+
       exit();
     } else{
       print('Пользователь для изменения не выбран');
@@ -357,6 +365,14 @@ function front_post($request, $db) {
       try {
         $user_id=getUID($_SESSION['login']);
         UPDATE($user_id, $_POST['fio'], $_POST['number'], $_POST['email'], $_POST['birthdate'], $_POST['radio-group-1'], $_POST['biography'], isset($_POST["checkbox"]) ? 1 : 0, $languages);
+      
+        if ($is_ajax) {
+        echo json_encode([
+          'success' => true,
+          'message' => 'Успешное изменение',
+        ]);
+        exit;
+      }
       }
       catch(PDOException $e){
         print('Error : ' . $e->getMessage());
