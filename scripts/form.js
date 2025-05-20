@@ -79,12 +79,13 @@ document.addEventListener('DOMContentLoaded', function() {
        if (!gender) {
          errors['radio-group-1'] = 'Укажите пол';
          errors.proverka = false;
-      }*/
+      }
          if (!gender) {
           errors['radio-group-1'] = 'Укажите пол';
           errors.proverka = false;
         }
-      
+      */
+     
       // Проверка языков
       if (!languages.value) { 
         errors.languages = 'Укажите хотя бы один язык';
