@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         del.biography='c';
         del.checkbox='c';
         del['radio-group-1'] = 'check';
-      for(const [field] of Object.entries(del)){
+      for(const [field, message] of Object.entries(del)){
         let fieldElement;
         
         // Специальная обработка для radio и checkbox
@@ -160,6 +160,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fieldElement.classList.remove('error-field');
       }
+
+
+
+        
       // Добавление новых ошибок
       for (const [field, message] of Object.entries(errors)) {
 
