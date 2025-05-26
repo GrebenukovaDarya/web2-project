@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
       form.querySelectorAll('.error-field').forEach(el => {
         el.classList.remove('error-field');
       });
-      
-      for(const [field, message] of Object.entries(del)){
+      del = {fio, number, email, birthdate, radio-group-1, languages, biography, checkbox }
+      for(const [field] of Object.entries(del)){
         let fieldElement;
         
         // Специальная обработка для radio и checkbox
@@ -155,13 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Добавление новых ошибок
       for (const [field, message] of Object.entries(errors)) {
 
-<<<<<<< HEAD
-
-
         console.log(field);
-=======
-        //console.log(field);
->>>>>>> be37246fbeaa09832464eba7ff959e96a10d4036
 
         let fieldElement;
         
