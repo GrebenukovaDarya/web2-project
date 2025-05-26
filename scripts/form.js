@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
        if (!gender) {
          errors['radio-group-1'] = 'Укажите пол';
+         console.log(errors['radio-group-1']);
          errors.proverka = false;
       }
 
@@ -136,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Специальная обработка для radio и checkbox
         if (field === 'radio-group-1') {
           fieldElement = form.querySelector(`[name="${field}"]`)?.closest('fieldset');
+            console.log( form.querySelector(`[name="${field}"]`)?.closest('fieldset'));
         } else if (field === 'checkbox') {
           fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
         } else if (field === 'languages') {
