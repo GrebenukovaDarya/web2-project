@@ -148,8 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Специальная обработка для radio и checkbox
         if (field === 'radio-group-1') {
-          fieldElement = form.querySelector(`[name="${field}"]`)?.closest('fieldset');
-            console.log( form.querySelector(`[name="${field}"]`)?.closest('fieldset'));
+          fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
+            console.log( form.querySelector(`[name="${field}"]`)?.closest('label'));
         } else if (field === 'checkbox') {
           fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
         } else if (field === 'languages') {
