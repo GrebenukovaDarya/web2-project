@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         el.classList.remove('error-field');
       });
       
-      for(const [field, message] of ){
+      for(const [field, message] of Object.entries(del)){
         let fieldElement;
         
         // Специальная обработка для radio и checkbox
