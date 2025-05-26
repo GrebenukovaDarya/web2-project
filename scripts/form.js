@@ -83,14 +83,14 @@ document.addEventListener('DOMContentLoaded', function() {
       del['radio-group-1'] = 'check';
        if (!gender) {
          errors['radio-group-1'] = 'Укажите пол';
-         console.log(errors['radio-group-1']);
+         //console.log(errors['radio-group-1']);
          errors.proverka = false;
       }
 
       // Проверка языков
        del.languages = 'check';
       if (!languages.value) { 
-        console.log("language validation");
+        //console.log("language validation");
         errors.languages = 'Укажите хотя бы один язык';
         errors.proverka = false;
       }
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
       container.innerHTML = '';
       container.style.display = 'block';
 
-      console.log(errors);
+      //console.log(errors);
       
       // Очистка предыдущих ошибок
       form.querySelectorAll('.error-field').forEach(el => {
@@ -155,16 +155,20 @@ document.addEventListener('DOMContentLoaded', function() {
       // Добавление новых ошибок
       for (const [field, message] of Object.entries(errors)) {
 
+<<<<<<< HEAD
 
 
         console.log(field);
+=======
+        //console.log(field);
+>>>>>>> be37246fbeaa09832464eba7ff959e96a10d4036
 
         let fieldElement;
         
         // Специальная обработка для radio и checkbox
         if (field === 'radio-group-1') {
-          fieldElement = form.querySelector(`[name="${field}"]`)?.closest('fieldset');
-            console.log( form.querySelector(`[name="${field}"]`)?.closest('fieldset'));
+          fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
+            console.log( form.querySelector(`[name="${field}"]`)?.closest('label'));
         } else if (field === 'checkbox') {
           fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
         } else if (field === 'languages') {
