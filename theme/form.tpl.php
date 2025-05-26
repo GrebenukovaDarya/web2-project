@@ -1005,6 +1005,9 @@
           <input class="submit-btn" type="submit" value="Сохранить" id="submit-btn"/>
           
           </form>
+            <div>
+                <a class="admin_ref" href="<?php echo url('admin'); ?>">Войти как администратор</a> <br>
+            </div>
 
           <?php 
           
