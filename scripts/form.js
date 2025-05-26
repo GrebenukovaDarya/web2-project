@@ -134,7 +134,15 @@ document.addEventListener('DOMContentLoaded', function() {
       form.querySelectorAll('.error-field').forEach(el => {
         el.classList.remove('error-field');
       });
-      del = {'fio', 'number', 'email', 'birthdate', 'radio-group-1', 'languages', 'biography', 'checkbox' };
+      const del = {};
+        del.fio='c';
+        del.number='c';
+        del.email='c';
+        del.birthdate='c';
+        del.languages='c';
+        del.biography='c';
+        del.checkbox='c';
+        del['radio-group-1'] = 'check';
       for(const [field] of Object.entries(del)){
         let fieldElement;
         
