@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Функция валидации формы
   function validateForm(form) {
       const errors = {};
+      const del={};
       const fio = form.querySelector('[name="fio"]')?.value.trim();
       const phone = form.querySelector('[name="number"]')?.value.trim();
       const email = form.querySelector('[name="email"]')?.value.trim();
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
       errors.proverka = true;
   
       // Проверка ФИО
+      del.fio = 'check';
       if (!fio) {
         errors.fio = 'Заполните имя, пожалуйста';
         errors.proverka = false;
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Проверка телефона
+      del.number = 'check';
       if (!phone) {
         errors.number = 'Введите номер телефона';
         errors.proverka = false;
@@ -46,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Проверка email
+      del.email = 'check';
       if (!email) {
         errors.email = 'Введите email';
         errors.proverka = false;
@@ -55,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Проверка даты рождения
+      del.birthdate = 'check';
       if (!date) {
         errors.birthdate = 'Выберите дату рождения';
         errors.proverka = false;
@@ -75,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Проверка пола
-      
+      del['radio-group-1'] = 'check';
        if (!gender) {
          errors['radio-group-1'] = 'Укажите пол';
          console.log(errors['radio-group-1']);
@@ -83,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       // Проверка языков
+       del.languages = 'check';
       if (!languages.value) { 
         console.log("language validation");
         errors.languages = 'Укажите хотя бы один язык';
@@ -95,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
        }*/
       
       // Проверка биографии
+       del.biography = 'check';
       if (!biography) {
         errors.biography = 'Заполните биографию';
         errors.proverka = false;
@@ -107,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       // Проверка согласия
+       del.checkbox = 'check';
       if (!contract) {
         errors.checkbox = 'Необходимо согласиться с условиями';
         errors.proverka = false;
@@ -127,8 +135,27 @@ document.addEventListener('DOMContentLoaded', function() {
         el.classList.remove('error-field');
       });
       
+      for(const [field, message] of ){
+        let fieldElement;
+        
+        // Специальная обработка для radio и checkbox
+        if (field === 'radio-group-1') {
+          fieldElement = form.querySelector(`[name="${field}"]`)?.closest('fieldset');
+            console.log( form.querySelector(`[name="${field}"]`)?.closest('fieldset'));
+        } else if (field === 'checkbox') {
+          fieldElement = form.querySelector(`[name="${field}"]`)?.closest('label');
+        } else if (field === 'languages') {
+          fieldElement = form.querySelector(`[name="${field}[]"]`)?.closest('label');
+        } else {
+          fieldElement = form.querySelector(`[name="${field}"]`);
+        }
+
+        fieldElement.classList.remove('error-field');
+      }
       // Добавление новых ошибок
       for (const [field, message] of Object.entries(errors)) {
+
+
 
         console.log(field);
 
